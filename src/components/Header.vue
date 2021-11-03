@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar">
+    <div class="navbar fixed">
         <div class="container">
             <div class="brand">
                 <router-link to="/">
@@ -8,7 +8,7 @@
             </div>
             <div class="navlist">
                 <ul>
-                    <li v-for="menuItem in menuList" :key="menuItem.href" class="active">
+                    <li v-for="menuItem in menuList" :key="menuItem.href" :class="{ active: menuItem.href === $route.path }">
                         <router-link :to="menuItem.href">{{ menuItem.name }}</router-link>
                         <dl v-if="menuItem.childrens" class="dropdown">
                             <dd v-for="(item, idx) in menuItem.childrens" :key="item.href" :style="`transition-delay: 0.${ idx }s`"><a href="#">{{ item.name }}</a></dd>
@@ -40,8 +40,12 @@
                     </li> -->
                 </ul>
             </div>
-            <div class="navbtn">
-                <span class="icon-tel">a</span>
+            <div class="nav-tel">
+                <!-- <span class="icon-tel">a</span> -->
+                <!-- <div class="tel-dropdown"> -->
+                    <h3>全国服务热线</h3>
+                    <p>{{ companyData.phone }}</p>
+                <!-- </div> -->
                 <!-- <span class="icon-search">b</span> -->
             </div>
         </div>
@@ -50,12 +54,15 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import menuData from '@/assets/data/menuData'
+import menuData from '@/assets/data/menuData.json';
 
 @Component
 export default class VHeader extends Vue {
-  @Prop() private msg!: string;
-  private menuList = menuData
+//   @Prop() private tel!: string;
+  private menuList = menuData;
+  get companyData() {
+      return this.$store.state.companyData
+  }
 }
 </script>
 
@@ -71,6 +78,11 @@ export default class VHeader extends Vue {
     height: $navHeight;
     box-shadow: 0 0 6px rgba($color: #000000, $alpha: .1);
     position: relative;
+    &.fixed {
+        position: fixed;
+        width: 100%;
+        z-index: 9;
+    }
     .brand {
         position: absolute;
         width: 160px;
@@ -92,7 +104,7 @@ export default class VHeader extends Vue {
     .navlist {
         width: 100%;
         height: 100%;
-        padding: 0 100px 0 22%;
+        padding: 0 130px 0 22%;
         box-sizing: border-box;
         text-align: right;
         > ul > li {
@@ -163,6 +175,8 @@ export default class VHeader extends Vue {
                     height: 100%;
                     transition: height .15s ease-in;
                 }
+            }
+            &:hover {
                 .dropdown {
                     height: auto;
                     > dd {
@@ -171,6 +185,20 @@ export default class VHeader extends Vue {
                     }
                 }
             }
+        }
+    }
+    .nav-tel {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -21px;
+        line-height: 1.5;
+        > h3 {
+            // font-weight: normal;
+            font-size: .9rem;
+        }
+        > p {
+            font-size: 1.1rem;
         }
     }
     .navbtn {
@@ -195,6 +223,12 @@ export default class VHeader extends Vue {
                 background-color: $blueColor;
                 transition: all ease-in .2s;
             }
+        }
+        .tel-dropdown {
+            position: absolute;
+            width: 200px;
+            background-color: rgba($color: #fff, $alpha: .8);
+            box-shadow: 0 .5rem 1rem rgba($color: #000000, $alpha: .2);
         }
     }
 }

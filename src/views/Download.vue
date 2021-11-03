@@ -1,7 +1,5 @@
 <template>
     <div class="wrap">
-        <!-- // 导航 -->
-        <v-header />
         <!-- // 栏目标题 -->
         <menu-banner :data="menuOptions"></menu-banner>
         <!-- // 内容 -->
@@ -35,10 +33,6 @@
             <!-- // 分页  -->
             <el-pagination class="pager" background layout="prev, pager, next" :total="30"></el-pagination>
         </div>
-        <!-- // 页脚 -->
-        <v-footer />
-        <!-- 友情链接 -->
-        <!-- <v-links /> -->
     </div>
 </template>
 

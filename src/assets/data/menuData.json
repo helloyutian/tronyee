@@ -1,0 +1,43 @@
+[
+  { "name": "首页", "href": "/" },
+  {
+    "name": "关于创亿",
+    "href": "/about",
+    "childrens": [
+      { "name": "创亿简介", "href": "/about#intro", "type": "intro" },
+      { "name": "企业文化", "href": "/about#culture", "type": "culture" },
+      { "name": "荣誉资质", "href": "/about#honor", "type": "honor" },
+      {
+        "name": "公司环境",
+        "href": "/about#environment",
+        "type": "environment"
+      }
+    ]
+  },
+  {
+    "name": "产品中心",
+    "href": "/product",
+    "childrens": [
+      { "name": "三星贴片电容", "href": "/product/sx", "type": "sx" },
+      { "name": "村田贴片电容", "href": "/product/ct", "type": "ct" },
+      { "name": "国巨贴片电容", "href": "/product/gj", "type": "gj" }
+    ]
+  },
+  {
+    "name": "资料下载",
+    "href": "/download",
+    "childrens": [
+      { "name": "规格书下载", "href": "/download/spec", "type": "spec" }
+    ]
+  },
+  {
+    "name": "行业动态",
+    "href": "/news",
+    "childrens": [
+      { "name": "创亿动态", "href": "/news/cy", "type": "cy" },
+      { "name": "产品百科", "href": "/news/wiki", "type": "wiki" }
+    ]
+  },
+  { "name": "品牌专区", "href": "/brand" },
+  { "name": "联系我们", "href": "/contact" }
+]

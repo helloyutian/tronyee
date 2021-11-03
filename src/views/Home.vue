@@ -1,7 +1,5 @@
 <template>
   <div class="warp">
-    <!-- // 导航 -->
-    <v-header />
     <div class="session slide">
         <swiper class="slide-banner swiper-no-swiping" :options="bannerOption">
             <swiper-slide><img class="img-full" src="@/assets/img/a.jpg" alt="a" /></swiper-slide>
@@ -147,10 +145,6 @@
             </div>
         </div>
     </div>
-    <!-- // 页脚 -->
-    <v-footer />
-    <!-- 友情链接 -->
-    <v-links />
   </div>
 </template>
 
@@ -159,6 +153,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import 'swiper/dist/css/swiper.css';
+
 @Component({
   components: {
     swiper,
@@ -186,21 +181,23 @@ export default class Home extends Vue {
         fade: true,
         autoplayDisableOnInteraction: false,
     };
+
     private mounted() {
         document.addEventListener('scroll', this.handdleScroll);
-        console.log(document.documentElement.clientHeight);
-        console.log(document.documentElement.scrollTop);
+        // console.log(document.documentElement.clientHeight);
+        // console.log(document.documentElement.scrollTop);
+        // this.$store.dispatch('SET_COMPANY_INFO')
     }
     /**
      * handdleScolle
      */
-    public handdleScroll() {
+    private handdleScroll() {
         // console.log(document.documentElement.clientHeight)
         // console.log(document.documentElement.scrollTop)
-        const newsHeight = 0
+        const newsHeight = 0;
         const scrollHeight = document.documentElement.clientHeight + document.documentElement.scrollTop;
         if (scrollHeight >= newsHeight) {
-            console.log('add animate class');
+            // console.log('add animate class');
         }
     }
 }

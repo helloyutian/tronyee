@@ -4,11 +4,11 @@
             <div class="foot-right">
                 <h4>CONTACT US</h4>
                 <h5>联系我们</h5>
-                <p>0755-83257779</p>
+                <p>{{ companyData.phone }}</p>
                 <div class="contact-icon">
-                    <span>信</span>
-                    <span>博</span>
-                    <span>邮</span>
+                    <span><i class="iconfont icon-weixin"></i></span>
+                    <a :href="companyData.weibo" target="_blank"><i class="iconfont icon-xinlangweibo"></i></a>
+                    <a :href="`mailto:${ companyData.email }`" target="_blank"><i class="iconfont icon-email"></i></a>
                 </div>
             </div>
             <div class="foot-left">
@@ -16,11 +16,11 @@
                     <li v-for="item in menuList" :key="item.href"><router-link :to="item.href">{{ item.name }}</router-link></li>
                 </ul>
                 <div>
-                    <h4>手动阀</h4>
-                    <p>电话：0755-83257779</p>
-                    <p>邮箱：2881383375@qq.com</p>
-                    <p class="mb-10">地址：深圳市福田区中航路鼎诚国际大厦1811号</p>
-                    <p>© 2019 深圳创亿实业有限公司 版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备16056078号-2</a>  <a href="/map">网站地图</a></p>
+                    <h4>{{ companyData.name }}</h4>
+                    <p>电话：{{ companyData.phone }}</p>
+                    <p>邮箱：{{ companyData.email }}</p>
+                    <p class="mb-10">地址：{{ companyData.address }}</p>
+                    <p>©2021 {{ companyData.name }} 版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备16056078号-2</a>  <a href="/map">网站地图</a></p>
                 </div>
             </div>
         </div>
@@ -28,13 +28,17 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import menuData from '@/assets/data/menuData'
+import menuData from '@/assets/data/menuData.json';
+import { mapState } from 'vuex';
 export default Vue.extend({
     name: 'VFooter',
     data() {
         return {
-            menuList: menuData
+            menuList: menuData,
         }
+    },
+    computed: {
+        ...mapState(['companyData'])
     }
 });
 </script>
@@ -94,17 +98,21 @@ export default Vue.extend({
         }
         .contact-icon {
             margin-top: 1rem;
-            > span {
+            > span, > a {
                 display: inline-block;
                 text-align: center;
                 border-radius: 50%;
                 line-height: 28px;
-                width: 28px;
-                height: 28px;
-                box-sizing: border-box;
+                width: 26px;
+                height: 26px;
+                font-size: .7rem;
+                // box-sizing: border-box;
                 border: 2px solid #eee;
                 margin-left: 6px;
                 cursor: pointer;
+                &:hover {
+                    text-decoration: none;
+                }
             }
         }
     }
