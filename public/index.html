@@ -3,9 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;url=http://www.chuangyisy.cn/public/browser">
+    <script>location.href="http://www.chuangyisy.cn/public/browser";</script>
+    <![endif]-->
+    <!--[if IE 9]><iframe src='/themes/Home/default/browserIE9.html' style="width:100%;" scrolling="no" frameborder=0 'allowfullscreen'></iframe><![endif]-->
   </head>
   <body>
     <noscript>

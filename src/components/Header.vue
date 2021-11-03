@@ -1,0 +1,201 @@
+<template>
+    <div class="navbar">
+        <div class="container">
+            <div class="brand">
+                <router-link to="/">
+                    <img class="img-full" src="x.png" alt="logo">
+                </router-link>
+            </div>
+            <div class="navlist">
+                <ul>
+                    <li v-for="menuItem in menuList" :key="menuItem.href" class="active">
+                        <router-link :to="menuItem.href">{{ menuItem.name }}</router-link>
+                        <dl v-if="menuItem.childrens" class="dropdown">
+                            <dd v-for="(item, idx) in menuItem.childrens" :key="item.href" :style="`transition-delay: 0.${ idx }s`"><a href="#">{{ item.name }}</a></dd>
+                        </dl>
+                    </li>
+                    <!-- <li>
+                        <router-link to="/about">关于xx</router-link>
+                        <dl class="dropdown">
+                            <dd style="transition-delay: 0s"><a href="#">测定斯蒂芬啊</a></dd>
+                            <dd style="transition-delay: 0.1s"><a href="#">测定斯蒂芬啊</a></dd>
+                            <dd style="transition-delay: 0.2s"><a href="#">测定芬啊</a></dd>
+                            <dd style="transition-delay: 0.3s"><a href="#">测定法斯蒂芬啊</a></dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <router-link to="/production">产品中心</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/download">资料下载</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/news">行业动态</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/brand">品牌专区</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/contact">联系我们</router-link>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="navbtn">
+                <span class="icon-tel">a</span>
+                <!-- <span class="icon-search">b</span> -->
+            </div>
+        </div>
+    </div>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import menuData from '@/assets/data/menuData'
+
+@Component
+export default class VHeader extends Vue {
+  @Prop() private msg!: string;
+  private menuList = menuData
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+@import '@/assets/scss/var.scss';
+.navbar {
+    background-color: #fff;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    width: 100%;
+    height: $navHeight;
+    box-shadow: 0 0 6px rgba($color: #000000, $alpha: .1);
+    position: relative;
+    .brand {
+        position: absolute;
+        width: 160px;
+        height: 75px;
+        background-color: #ccc;
+        top: 7px;
+        left: 5px;
+        display: table;
+        text-align: center;
+        vertical-align: middle;
+        a {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        @media (min-width: $largeScreen) {
+            width: 250px;
+        }
+    }
+    .navlist {
+        width: 100%;
+        height: 100%;
+        padding: 0 100px 0 22%;
+        box-sizing: border-box;
+        text-align: right;
+        > ul > li {
+            width: 14%;
+            max-width: 110px;
+            font-size: 1rem;
+            display: inline-block;
+            position: relative;
+            margin-left: 1px;
+            > a {
+                display: block;
+                height: $navHeight;
+                line-height: $navHeight;
+                text-align: center;
+                position: relative;
+                z-index: 2;
+                transition: color .15s ease-out;
+            }
+            &::after {
+                content: '\20';
+                position: absolute;
+                width: 100%;
+                height: 0%;
+                bottom: 0;
+                left: 0;
+                background: $blueColor;
+                transition: height .15s ease-out;
+            }
+            .dropdown {
+                display: block;
+                height: 0;
+                overflow: hidden;
+                position: absolute;
+                top: $navHeight;
+                left: -1px;
+                box-shadow: 0 .5em 1em rgba($color: #000000, $alpha: .2);
+                text-align: center;
+                font-size: .9rem;
+                > dd {
+                    background: #fff;
+                    width: 160px;
+                    padding: 0 6px;
+                    height: 2.3rem;
+                    line-height: 2.3rem;
+                    border-bottom: 1px solid $borderColor;
+                    transform: rotateY(90deg);
+                    // transition: all ease-out .2s;
+                    > a {
+                        display: block;
+                        height: 100%;
+                    }
+                    &:hover, &:active {
+                        background-color: $blueColor;
+                        transition: background-color .15s ease-in;
+                        > a {
+                            color: #fff;
+                            transition: color .15s ease-in;
+                        }
+                    }
+                }
+            }
+            &.active, &:hover {
+                > a {
+                    color: #fff;
+                    transition: color .15s ease-in;
+                }
+                &::after {
+                    height: 100%;
+                    transition: height .15s ease-in;
+                }
+                .dropdown {
+                    height: auto;
+                    > dd {
+                        transform: rotateY(0deg);
+                        transition: transform ease-in .2s;
+                    }
+                }
+            }
+        }
+    }
+    .navbtn {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -18px;
+        > span {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #666;
+            text-align: center;
+            line-height: 36px;
+            color: #fff;
+            cursor: pointer;
+            margin: 0 6px;
+            opacity: .8;
+            &:hover {
+                opacity: 1;
+                background-color: $blueColor;
+                transition: all ease-in .2s;
+            }
+        }
+    }
+}
+</style>
