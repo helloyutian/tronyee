@@ -11,33 +11,11 @@
                     <li v-for="menuItem in menuList" :key="menuItem.href" :class="{ active: menuItem.href === $route.path }">
                         <router-link :to="menuItem.href">{{ menuItem.name }}</router-link>
                         <dl v-if="menuItem.childrens" class="dropdown">
-                            <dd v-for="(item, idx) in menuItem.childrens" :key="item.href" :style="`transition-delay: 0.${ idx }s`"><a href="#">{{ item.name }}</a></dd>
+                            <dd v-for="(item, idx) in menuItem.childrens" :key="item.href" :style="`transition-delay: 0.${ idx }s`">
+                                <router-link :to="item.href">{{ item.name }}</router-link>
+                            </dd>
                         </dl>
                     </li>
-                    <!-- <li>
-                        <router-link to="/about">关于xx</router-link>
-                        <dl class="dropdown">
-                            <dd style="transition-delay: 0s"><a href="#">测定斯蒂芬啊</a></dd>
-                            <dd style="transition-delay: 0.1s"><a href="#">测定斯蒂芬啊</a></dd>
-                            <dd style="transition-delay: 0.2s"><a href="#">测定芬啊</a></dd>
-                            <dd style="transition-delay: 0.3s"><a href="#">测定法斯蒂芬啊</a></dd>
-                        </dl>
-                    </li>
-                    <li>
-                        <router-link to="/production">产品中心</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/download">资料下载</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/news">行业动态</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/brand">品牌专区</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/contact">联系我们</router-link>
-                    </li> -->
                 </ul>
             </div>
             <div class="nav-tel">
@@ -53,15 +31,25 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import menuData from '@/assets/data/menuData.json';
+import { Route } from 'vue-router';
 
 @Component
 export default class VHeader extends Vue {
-//   @Prop() private tel!: string;
   private menuList = menuData;
   get companyData() {
-      return this.$store.state.companyData
+    return this.$store.state.companyData
+  }
+  @Watch('$route')
+  onWatchChanged(newVal: Route) {
+      console.log(newVal)
+      for (let i = 0; i < menuData.length; i ++) {
+          const item = menuData[i]
+          if (newVal.path === item.href) {
+              console.log('xxxxx')
+          }
+      }
   }
 }
 </script>

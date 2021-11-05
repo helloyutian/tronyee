@@ -1,13 +1,11 @@
 <template>
-  <div class="warp">
+  <div class="wrap">
     <div class="session slide">
         <swiper class="slide-banner swiper-no-swiping" :options="bannerOption">
-            <swiper-slide><img class="img-full" src="@/assets/img/a.jpg" alt="a" /></swiper-slide>
-            <swiper-slide><img class="img-full" src="@/assets/img/b.jpg" alt="a" /></swiper-slide>
-            <swiper-slide><img class="img-full" src="@/assets/img/a.jpg" alt="a" /></swiper-slide>
+            <swiper-slide v-for="item in bannerList" :key="item.id"><img class="img-full" :src="item.url" alt="" /></swiper-slide>
             <div class="swiper-pagination banner-pagination" slot="pagination"></div>
-            <div class="swiper-button-prev banner-prev" slot="button-prev"></div>
-            <div class="swiper-button-next banner-next" slot="button-next"></div>
+            <div class="swiper-button-prev swiper-button-white banner-prev" slot="button-prev"></div>
+            <div class="swiper-button-next swiper-button-white banner-next" slot="button-next"></div>
         </swiper>
     </div>
     <div class="session">
@@ -20,46 +18,52 @@
                 <p class="intro">深圳创亿实业有限公司一直专注于国内外知名品牌MLCC电容的行销以及物流供应链，主要品牌有：三星(SAMSUNG)、村田（MURATA)、国巨（YAGEO)、华科（WALSIN）、三环（CCTC）等。目前公司主要以国内贸易为主，现货形式销售，常备大量现货，拥有完整的型号库存。</p>
             </div>
         </div>
-        <div class="container">
+        <div ref="productElem" class="container">
             <div class="product-list">
                 <ul class="clearfix">
                     <li>
-                        <div class="pic">
-                            <img class="img-full" src="@/assets/img/b.jpg" alt="产品">
+                        <div class="product-item animated" :class="{fadeInDown: isShowProduct}" style="animation-delay: .2s">
+                            <div class="pic">
+                                <img class="img-full" src="@/assets/img/a.jpg" alt="产品">
+                            </div>
+                            <div class="mark"></div>
+                            <a class="txt" href="/product/sx">
+                                <h3>三星贴片电容</h3>
+                                <p>Inductive magnetic beads</p>
+                            </a>
                         </div>
-                        <div class="mark"></div>
-                        <a class="txt" href="#">
-                            <h3>数据的克里夫</h3>
-                            <p>skjf dskfjewlk df</p>
-                        </a>
                     </li>
                     <li>
-                        <div class="pic">
-                            <img class="img-full" src="@/assets/img/b.jpg" alt="产品">
+                        <div class="product-item animated" :class="{fadeInDown: isShowProduct}" style="animation-delay: .7s">
+                            <div class="pic">
+                                <img class="img-full" src="@/assets/img/b.jpg" alt="产品">
+                            </div>
+                            <div class="mark"></div>
+                            <a class="txt" href="/product/ct">
+                                <h3>村田贴片电容</h3>
+                                <p>Capacitor category</p>
+                            </a>
                         </div>
-                        <div class="mark"></div>
-                        <a class="txt" href="#">
-                            <h3>数据的克里夫</h3>
-                            <p>skjf dskfjewlk df</p>
-                        </a>
                     </li>
                     <li>
-                        <div class="pic">
-                            <img class="img-full" src="@/assets/img/b.jpg" alt="产品">
+                        <div class="product-item animated" :class="{fadeInDown: isShowProduct}" style="animation-delay: 1.2s">
+                            <div class="pic">
+                                <img class="img-full" src="@/assets/img/c.jpg" alt="产品">
+                            </div>
+                            <div class="mark"></div>
+                            <a class="txt" href="/product/gj">
+                                <h3>国巨贴片电容</h3>
+                                <p>Capacitor category</p>
+                            </a>
                         </div>
-                        <div class="mark"></div>
-                        <a class="txt" href="#">
-                            <h3>数据的克里夫</h3>
-                            <p>skjf dskfjewlk df</p>
-                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="session about">
+    <div ref="aboutElem" class="session about">
         <div class="bg-img">
-            <span class="animated imgScale infinite" :style="`background-image: url('${require('@/assets/img/a.jpg')}')`"></span>
+            <span class="animated imgScale infinite" :style="`background-image: url('${ companyData.img }')`"></span>
             <!-- <img src="@/assets/img/a.jpg" alt=""> -->
         </div>
         <div class="about-intro">
@@ -67,18 +71,18 @@
             <p>深圳创亿实业有限公司多年来一直专注于国内外知名品牌MLCC电容的行销以及物流供应链，主要品牌有：三星(SAMSUNG)、村田（MURATA)、国巨（YAGEO)、华科（WALSIN）、三环（CCTC）等。</p>
             <div class="about-icon">
                 <ul>
-                    <li>
+                    <li class="animated" :class="{ fadeInDown: isShowAbout }" style="animation-delay: .2s">
                         <div class="icon culture"></div>
                         <h3>企业文化</h3>
                         <p>Company Culture</p>
                     </li>
-                    <li>
-                        <div class="icon"></div>
+                    <li class="animated" :class="{ fadeInDown: isShowAbout }" style="animation-delay: .7s">
+                        <div class="icon strength"></div>
                         <h3>公司实力</h3>
                         <p>Company strength</p>
                     </li>
-                    <li>
-                        <div class="icon"></div>
+                    <li class="animated" :class="{ fadeInDown: isShowAbout }" style="animation-delay: 1.2s">
+                        <div class="icon patent"></div>
                         <h3>专利证书</h3>
                         <p>Patent Certificate</p>
                     </li>
@@ -86,60 +90,69 @@
             </div>
         </div>
     </div>
-    <div class="session news">
+    <div ref="newsElem" class="session news">
         <div class="container">
-            <div class="exhibition">
+            <div class="exhibition animated" :class="{ fadeInLeftBig: isShowNews }">
                 <div class="tit">
-                    <router-link class="more fr" to="/"><span>M</span>ORE+</router-link>
+                    <router-link class="more fr" to="/news/dynamic"><span>M</span>ORE+</router-link>
                     <p>Exhibition</p>
                     <h2>创亿动态</h2>
                 </div>
-                <div class="con">
-                    <swiper class="exhibition-slide swiper-no-swiping" :options="newsOption">
-                        <swiper-slide class="slide-item">
-                            <img class="img-cover" src="/assets/img/b.jpg" alt="xxx">
+                <div class="con" @mouseenter.stop="stopAutoPlay('newsSwiper')" @mouseleave.stop="startAutoPlay('newsSwiper')">
+                    <swiper ref="newsSwiper" class="exhibition-slide swiper-no-swiping" :options="newsOption">
+                        <swiper-slide v-for="item in dynamicLlist" :key="item.cid" class="slide-item">
+                            <img class="img-cover" :src="item.titlePic" alt="xxx">
+                            <div class="txt">
+                                <span>{{ item.created * 1000 | dateFormate('MM-DD') }}</span>
+                                <p>{{ item.title }}</p>
+                            </div>
+                        </swiper-slide>
+                        <!-- <swiper-slide class="slide-item">
+                            <img class="img-cover" src="https://www.chuangyisy.cn/uploads/202006/5ee196c767938.jpg" alt="xxx">
                             <div class="txt">
                                 <span>10-27</span>
-                                <p>数据库的flak的，上的飞机咋啦</p>
+                                <p>数据库的flak的，上的飞机咋啦11111</p>
                             </div>
                         </swiper-slide>
                         <swiper-slide class="slide-item">
-                            <img class="img-cover" src="/assets/img/b.jpg" alt="xxx">
+                            <img class="img-cover" src="https://www.chuangyisy.cn/uploads/202004/5eaa9911d4af1.jpg" alt="xxx">
                             <div class="txt">
                                 <span>10-27</span>
-                                <p>数据库的flak的，上的飞机咋啦</p>
+                                <p>数据库的flak的，上的飞机咋啦22222</p>
                             </div>
-                        </swiper-slide>
+                        </swiper-slide> -->
                         <div class="swiper-button-prev exhi-prev" slot="button-prev"></div>
                         <div class="swiper-button-next exhi-next" slot="button-next"></div>
                     </swiper>
                 </div>
             </div>
             <!-- 产品百科 -->
-            <div class="wiki">
+            <div class="wiki animated" :class="{ fadeInRightBig: isShowNews }">
                 <div class="tit">
-                    <router-link class="more fr" to="/"><span>M</span>ORE+</router-link>
+                    <router-link class="more fr" to="/news/wiki"><span>M</span>ORE+</router-link>
                     <p>Brand Dynamics</p>
                     <h2>产品百科</h2>
                 </div>
                 <div class="con">
                     <ul>
-                        <li class="first-item clearfix">
-                            <div class="pic fl"><img class="img-full" src="x.jpg" alt="xxx"></div>
-                            <div class="txt">
-                                <h3>速度加快立法</h3>
-                                <p class="date">2021-10-27</p>
-                                <p class="intro">本文档是li的私有项目的接口文档，以下为当前项目下的公共参数。</p>
-                            </div>
-                        </li>
-                        <li class="item">
+                        <template v-for="(item, idx) in wikiList">
+                            <li v-if="idx === 0" :key="item.cid" class="first-item clearfix">
+                                <div class="pic fl"><img class="img-full" :src="item.titlePic" alt=""></div>
+                                <div class="txt">
+                                    <h3>{{ item.title }}</h3>
+                                    <p class="date">{{ item.created * 1000 | dateFormate('YYYY-MM-DD') }}</p>
+                                    <p class="intro">{{ item.slug }}</p>
+                                </div>
+                            </li>
+                            <li v-else :key="item.cid" class="item">
+                                <div class="date"><span>16</span>/11</div>
+                                <p>{{ item.title }}</p>
+                            </li>
+                        </template>
+                        <!-- <li class="item">
                             <div class="date"><span>16</span>/11</div>
                             <p>是快乐的法律上地方</p>
-                        </li>
-                        <li class="item">
-                            <div class="date"><span>16</span>/11</div>
-                            <p>是快乐的法律上地方</p>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -153,12 +166,18 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import 'swiper/dist/css/swiper.css';
+import '@/assets/scss/animate.css';
+import { getArticleInfo, getOssByType } from '@/utils/apis';
+import { dateFormate } from '@/utils'
 
 @Component({
   components: {
     swiper,
     swiperSlide,
   },
+  filters: {
+      dateFormate
+  }
 })
 export default class Home extends Vue {
     private bannerOption = {
@@ -171,34 +190,96 @@ export default class Home extends Vue {
         effect: 'fade',
         fade: true,
         autoplayDisableOnInteraction: false,
+        loop: true
     };
     private newsOption = {
-        autoplay: 3000,
+        autoplay: 4000,
         observeParents: true,
-        effect: 'fade',
-         prevButton: '.exhi-prev',
+        prevButton: '.exhi-prev',
         nextButton: '.exhi-next',
-        fade: true,
         autoplayDisableOnInteraction: false,
+        loop: true
     };
+    private bannerList = []
+    private dynamicLlist = []
+    private wikiList = []
+    // private productTop = 0
+    // private aboutTop = 0
+    // private newsTop = 0
+    private isShowProduct = false
+    private isShowAbout = false
+    private isShowNews = false
 
-    private mounted() {
-        document.addEventListener('scroll', this.handdleScroll);
-        // console.log(document.documentElement.clientHeight);
-        // console.log(document.documentElement.scrollTop);
-        // this.$store.dispatch('SET_COMPANY_INFO')
+    get companyData() {
+        return this.$store.state.companyData
     }
-    /**
-     * handdleScolle
-     */
+    private mounted() {
+        this.getBannnerList()
+        this.getDynamicLlist()
+        this.getWikiLlist()
+        this.$nextTick(() => {
+            document.addEventListener('scroll', this.handdleScroll);
+            if ((this.$refs.productElem as any).offsetTop < document.documentElement.clientHeight) {
+                this.isShowProduct = true
+            }
+        })
+    }
+    private beforeDestroy() {
+        document.removeEventListener('scroll', this.handdleScroll);
+    }
     private handdleScroll() {
-        // console.log(document.documentElement.clientHeight)
-        // console.log(document.documentElement.scrollTop)
-        const newsHeight = 0;
-        const scrollHeight = document.documentElement.clientHeight + document.documentElement.scrollTop;
-        if (scrollHeight >= newsHeight) {
-            // console.log('add animate class');
+        const productTop = (this.$refs.productElem as any).offsetTop
+        const aboutTop = (this.$refs.aboutElem as any).offsetTop + 200
+        const newsTop = (this.$refs.newsElem as any).offsetTop
+        const scrollTop = document.documentElement.clientHeight + document.documentElement.scrollTop;
+        if (scrollTop > productTop) {
+            this.isShowProduct = true
+            // console.log('product animate')
         }
+        if (scrollTop > aboutTop) {
+            this.isShowAbout = true
+            // console.log('about animate')
+        }
+        if (scrollTop > newsTop) {
+            this.isShowNews = true
+            document.removeEventListener('scroll', this.handdleScroll)
+            // console.log('news animate')
+        }
+    }
+    // 获取轮播图
+    private async getBannnerList() {
+        const res = await getOssByType({
+            type: '7'
+        })
+        this.bannerList = res.list
+    }
+    // 获取行业动态
+    private async getDynamicLlist() {
+        const res = await getArticleInfo({
+            pageNum: 1,
+            pageSize: 4,
+            type: 'dynamic'
+        })
+        // console.log(res)
+        this.dynamicLlist = res.list
+    }
+    // 获取产品百科
+    private async getWikiLlist() {
+        const res = await getArticleInfo({
+            pageNum: 1,
+            pageSize: 4,
+            type: 'product'
+        })
+        // console.log(res)
+        this.wikiList = res.list
+    }
+    // 停止自动播放
+    private stopAutoPlay(elem: string) {
+        (this.$refs[elem] as any).swiper.stopAutoplay()
+    }
+    // 继续自动播放
+    private startAutoPlay(elem: string) {
+        (this.$refs[elem] as any).swiper.startAutoplay()
     }
 }
 </script>
@@ -209,8 +290,32 @@ export default class Home extends Vue {
 .slide {
     width: 100%;
     .slide-banner {
-        height: 620px;
+        // height: 620px;
         max-height: 620px;
+    }
+    .banner-prev {
+        left: 20px;
+    }
+    .banner-next {
+        right: 20px;
+    }
+    .banner-prev, .banner-next {
+        padding: 20px 10px;
+        background-color: rgba($color: #000000, $alpha: .3);
+    }
+    .banner-pagination {
+        ::v-deep .swiper-pagination-bullet{
+            width: 3rem;
+            height: 5px;
+            border-radius: 1px;
+            background-color: #fff;
+            opacity: .8;
+            box-shadow: 0 2px 3px rgba($color: #000000, $alpha: .2);
+            &.swiper-pagination-bullet-active {
+                background-color: $blueColor;
+                opacity: .9;
+            }
+        }
     }
 }
 .product-tit {
@@ -228,91 +333,92 @@ export default class Home extends Vue {
 .product-list {
     margin: 4rem 0 5rem;
     > ul {
-        display: flex;
         > li {
             width: 33.33%;
             position: relative;
-            margin-right: 15px;
             box-sizing: border-box;
-            &:last-child {
-                margin-right: 0;
-            }
-            .pic {
+            float: left;
+            .product-item {
                 position: relative;
-                &::after {
-                    content: '\20';
+                margin: 0 5px;
+                .pic {
+                    position: relative;
+                    &::after {
+                        content: '\20';
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        left: 0;
+                        top: 0;
+                        bottom: 0;
+                        background-color: rgba($color: #000000, $alpha: .3);
+                        z-index: 2;
+                        transition: all ease-out .2s;
+                    }
+                }
+                .mark {
                     position: absolute;
-                    width: 100%;
+                    width: 0%;
                     height: 100%;
                     left: 0;
                     top: 0;
                     bottom: 0;
-                    background-color: rgba($color: #000000, $alpha: .3);
+                    background-color: rgba($color: $blueColor, $alpha: .4);
                     z-index: 2;
                     transition: all ease-out .2s;
                 }
-            }
-            .mark {
-                position: absolute;
-                width: 0%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                background-color: rgba($color: $blueColor, $alpha: .4);
-                z-index: 2;
-                transition: all ease-out .2s;
-            }
-            .txt {
-                display: block;
-                width: 100%;
-                height: 100%;
-                z-index: 3;
-                position: absolute;
-                top: 0;
-                left: 0;
-                color: #fff;
-                padding-left: 12%;
-                padding-top: 13%;
-                box-sizing: border-box;
-                > h3 {
-                    line-height: 1.5;
-                    font-size: 1.4rem;
-                    font-weight: normal;
-                }
-                > p {
-                    line-height: 1.5;
-                    margin-bottom: .5em;
-                    font-size: .8rem;
-                    text-transform: uppercase;
-                }
-                &::after {
-                    content: '\20';
-                    width: 2em;
-                    height: 2px;
-                    display: inline-block;
-                    background-color: #fff;
-                    transition: width ease-out .2s;
-                }
-            }
-            &:hover {
-                .pic {
+                .txt {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 3;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    color: #fff;
+                    padding-left: 12%;
+                    padding-top: 13%;
+                    box-sizing: border-box;
+                    > h3 {
+                        line-height: 1.5;
+                        font-size: 1.4rem;
+                        font-weight: normal;
+                    }
+                    > p {
+                        line-height: 1.5;
+                        margin-bottom: .5em;
+                        font-size: .8rem;
+                        text-transform: uppercase;
+                    }
                     &::after {
-                        background-color: rgba($color: #000000, $alpha: 0);
-                        transition: all ease-in .2s;
+                        content: '\20';
+                        width: 2em;
+                        height: 2px;
+                        display: inline-block;
+                        background-color: #fff;
+                        transition: width ease-out .2s;
                     }
                 }
-                .mark {
-                    width: 100%;
-                    transition: width ease-in .2s;
-                }
-                .txt {
-                    &::after {
-                        width: 4em;
+                &:hover {
+                    .pic {
+                        &::after {
+                            background-color: rgba($color: #000000, $alpha: 0);
+                            transition: all ease-in .2s;
+                        }
+                    }
+                    .mark {
+                        width: 100%;
                         transition: width ease-in .2s;
                     }
+                    .txt {
+                        &::after {
+                            width: 4em;
+                            transition: width ease-in .2s;
+                        }
+                    }
                 }
             }
+            
         }
     }
 }
@@ -390,8 +496,19 @@ export default class Home extends Vue {
                         height: 72px;
                         display: inline-block;
                         overflow: hidden;
-                        background-color: #eee;
                         margin-bottom: 8px;
+                        background-image: url('../assets/img/aIcon.png');
+                        background-repeat: no-repeat;
+                        transition: all ease .3s;
+                        &.culture {
+                            background-position: 0 0;
+                        }
+                        &.strength {
+                            background-position: -58px 0;
+                        }
+                        &.patent {
+                            background-position: -116px 0;
+                        }
                     }
                     > h3 {
                         font-weight: normal;
@@ -416,7 +533,12 @@ export default class Home extends Vue {
                             display: none;
                         }
                     }
-                    
+                    &:hover {
+                        .icon {
+                            background-position-y: -72px;
+                            transition: all ease .3s;
+                        }
+                    }
                 }
             }
         }
@@ -461,8 +583,9 @@ export default class Home extends Vue {
                 height: 100%;
                 .slide-item {
                     position: relative;
-                    .img-cover {
-                        background: #eee;
+                    > img {
+                        transform: scale(1);
+                        transition: all ease 1s;
                     }
                     .txt {
                         position: absolute;
@@ -507,6 +630,10 @@ export default class Home extends Vue {
                         }
                     }
                     &:hover {
+                        > img {
+                            transform: scale(1.1);
+                            transition: all ease 1s;
+                        }
                         .txt {
                             &::after {
                                 transform-origin: left;
@@ -514,6 +641,20 @@ export default class Home extends Vue {
                                 transition: transform ease-in .2s;
                             }
                         }
+                    }
+                }
+                .exhi-prev, .exhi-next {
+                    width: 28px;
+                    height: 30px;
+                    opacity: 0;
+                    background-color: #fff;
+                    border: 5px solid #fff;
+                    transition: all ease .2s;
+                }
+                &:hover {
+                    .exhi-prev, .exhi-next {
+                        opacity: .8;
+                        transition: all ease .2s;
                     }
                 }
             }
@@ -610,33 +751,4 @@ export default class Home extends Vue {
         
     }
 }
-// animate.css
-.animated {
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-.animated.infinite {
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-}
-
-@keyframes imgScale {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-.imgScale {
-    -webkit-animation-name: imgScale;
-    animation-name: imgScale;
-    -webkit-animation-duration: 25s;
-    animation-duration: 25s;
-}
-
 </style>

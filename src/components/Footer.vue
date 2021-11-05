@@ -6,9 +6,14 @@
                 <h5>联系我们</h5>
                 <p>{{ companyData.phone }}</p>
                 <div class="contact-icon">
-                    <span><i class="iconfont icon-weixin"></i></span>
-                    <a :href="companyData.weibo" target="_blank"><i class="iconfont icon-xinlangweibo"></i></a>
-                    <a :href="`mailto:${ companyData.email }`" target="_blank"><i class="iconfont icon-email"></i></a>
+                    <div class="icon" @mouseenter="isShowCode=true" @mouseleave="isShowCode=false">
+                        <i class="iconfont icon-weixin"></i>
+                        <transition name="slide-fade">
+                            <div v-if="isShowCode" class="qrcode"><img class="img-full" src="http://www.chuangyisy.cn/uploads/201910/5d9fe9a2ed377.png" alt="微信二维码"></div>
+                        </transition>
+                    </div>
+                    <a class="icon" :href="companyData.weibo" target="_blank"><i class="iconfont icon-xinlangweibo"></i></a>
+                    <a class="icon" :href="`mailto:${ companyData.email }`" target="_blank"><i class="iconfont icon-email"></i></a>
                 </div>
             </div>
             <div class="foot-left">
@@ -20,7 +25,7 @@
                     <p>电话：{{ companyData.phone }}</p>
                     <p>邮箱：{{ companyData.email }}</p>
                     <p class="mb-10">地址：{{ companyData.address }}</p>
-                    <p>©2021 {{ companyData.name }} 版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备16056078号-2</a>  <a href="/map">网站地图</a></p>
+                    <p>©2021 {{ companyData.name }}版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备16056078号-2</a>  <a href="/map">网站地图</a></p>
                 </div>
             </div>
         </div>
@@ -35,6 +40,7 @@ export default Vue.extend({
     data() {
         return {
             menuList: menuData,
+            isShowCode: false
         }
     },
     computed: {
@@ -98,18 +104,39 @@ export default Vue.extend({
         }
         .contact-icon {
             margin-top: 1rem;
-            > span, > a {
+            .icon {
                 display: inline-block;
                 text-align: center;
                 border-radius: 50%;
-                line-height: 28px;
-                width: 26px;
-                height: 26px;
+                line-height: 24px;
+                width: 24px;
+                height: 24px;
                 font-size: .7rem;
                 // box-sizing: border-box;
                 border: 2px solid #eee;
                 margin-left: 6px;
                 cursor: pointer;
+                position: relative;
+                .qrcode {
+                    width: 100px;
+                    height: 100px;
+                    background-color: #fff;
+                    padding: 10px;
+                    position: absolute;
+                    bottom: 35px;
+                    left: -48px;
+                    &::after {
+                        content: '\20';
+                        width: 10px;
+                        height: 10px;
+                        background-color: #fff;
+                        transform: rotate(45deg);
+                        position: absolute;
+                        bottom: -5px;
+                        left: 50%;
+                        margin-left: -5px;
+                    }
+                }
                 &:hover {
                     text-decoration: none;
                 }

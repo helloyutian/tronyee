@@ -5,7 +5,15 @@
         <!-- // 内容 -->
         <div class="container">
             <ul class="download-list clearfix">
-                <li class="dl-item">
+                <li v-for="item in downloadList" :key="item.id" class="dl-item" >
+                    <a :download="item.name" :href="item.url" title="点击下载">
+                        <span class="icon iconfont icon-xiazai"></span>
+                        <h4>{{ item.name }}</h4>
+                        <p class="count">下载次数： 0</p>
+                        <p class="date">更新时间：{{ item.modifyTime | dateFormate('YYYY-MM-DD') }}</p>
+                    </a>
+                </li>
+                <!-- <li class="dl-item">
                     <a href="#" >
                         <span class="icon">下载</span>
                         <h4>收到反馈</h4>
@@ -20,31 +28,61 @@
                         <p class="count">下载次数： 0</p>
                         <p class="date">更新时间：2021-11-02</p>
                     </a>
-                </li>
-                <li class="dl-item">
-                    <a href="#" >
-                        <span class="icon">下载</span>
-                        <h4>收到反馈</h4>
-                        <p class="count">下载次数： 0</p>
-                        <p class="date">更新时间：2021-11-02</p>
-                    </a>
-                </li>
+                </li> -->
             </ul>
             <!-- // 分页  -->
-            <el-pagination class="pager" background layout="prev, pager, next" :total="30"></el-pagination>
+            <el-pagination
+                class="pager"
+                background
+                layout="prev, pager, next"
+                :current-page.sync="queryParam.pageNum"
+                :page-size="queryParam.pageSize"
+                :total="total"
+                @current-change="getDownloadInfo"
+            ></el-pagination>
         </div>
     </div>
 </template>
 
 <script lang="ts">
+import { getOssInfo } from '@/utils/apis';
 import Vue from 'vue';
+import { dateFormate } from '@/utils'
+
 export default Vue.extend({
     name: 'Download',
     data() {
         return {
             menuOptions: {},
-        };
+            downloadList: [],
+            total: 0,
+            queryParam: {
+                pageNum: 1,
+                pageSize: 20
+            }
+        }
     },
+    filters: {
+        dateFormate
+    },
+    computed: {
+        type() {
+            return this.$route.params.type
+        }
+    },
+    mounted() {
+        this.getDownloadInfo()
+    },
+    methods: {
+        async getDownloadInfo() {
+            const res = await getOssInfo({
+                ...this.queryParam,
+                type: this.type
+            })
+            this.downloadList = res.list
+            this.total = res.total
+        }
+    }
 });
 </script>
 
@@ -65,7 +103,9 @@ export default Vue.extend({
             display: block;
             .icon {
                 float: right;
-                width: 50px;
+                margin-right: 2rem;
+                font-size: 2rem;
+                margin-top: 1.5rem;
             }
             > h4 {
                 font-weight: normal;

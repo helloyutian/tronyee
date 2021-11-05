@@ -18,9 +18,3 @@ interface RequestParamsType {
   params?: object;
   headers?: object;
 }
-// 请求响应返回类
-interface ResType {
-  code: string;
-  message: string;
-  data: any;
-}

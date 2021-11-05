@@ -34,7 +34,7 @@
     "name": "行业动态",
     "href": "/news",
     "childrens": [
-      { "name": "创亿动态", "href": "/news/cy", "type": "cy" },
+      { "name": "创亿动态", "href": "/news/dynamic", "type": "dynamic" },
       { "name": "产品百科", "href": "/news/wiki", "type": "wiki" }
     ]
   },

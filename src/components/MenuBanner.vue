@@ -1,5 +1,5 @@
 <template>
-    <div class="banner" :style="`background-image: url('${require('@/assets/img/a.jpg')}')`">
+    <div class="banner" :style="`background-image: url('https://www.chuangyisy.cn/uploads/201812/5c1cb588ba18f.jpg')`">
         <h1>标题标题</h1>
         <div class="nav-list">
             <div class="container">

@@ -9,6 +9,7 @@ import Float from '@/components/Float.vue';
 import MenuBanner from '@/components/MenuBanner.vue';
 import { Pagination } from 'element-ui';
 import '@/assets/font/iconfont.css';
+import '@/utils/requestAnimationFrame'
 
 Vue.config.productionTip = false;
 

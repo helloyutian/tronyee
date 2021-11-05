@@ -26,14 +26,14 @@ interface RequestOptionsType {
 // }]
 
 
-const axiosRequest = ({ url, method, data, params, headers }: RequestOptionsType): Promise<ResType> => {
+const axiosRequest = ({ url, method, data, params, headers }: RequestOptionsType): Promise<any> => {
     return new Promise((resolve, reject) => {
         axios({ url, method, data, params, headers }).then((res: any) => {
             if (!/^2[0-9]{2}$/.test(String(res.status))) {
                 reject(res)
                 throw res
             }
-            const resData: ResType = res.data;
+            const resData: any = res.data;
             resolve(resData);
         }).catch((err: Error) => {
             throw err;
