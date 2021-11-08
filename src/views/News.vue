@@ -29,12 +29,12 @@
 </template>
 
 <script lang="ts">
-import { getOssInfo } from '@/utils/apis';
+import { getArticleInfo } from '@/utils/apis';
 import Vue from 'vue';
 import { dateFormate } from '@/utils'
 
 export default Vue.extend({
-    name: 'Download',
+    name: 'News',
     data() {
         return {
             downloadList: [],
@@ -50,7 +50,7 @@ export default Vue.extend({
     },
     computed: {
         type() {
-            return this.$route.params.type
+            return this.$route.params.type || 'default'
         }
     },
     mounted() {
@@ -58,7 +58,7 @@ export default Vue.extend({
     },
     methods: {
         async getDownloadInfo() {
-            const res = await getOssInfo({
+            const res = await getArticleInfo({
                 ...this.queryParam,
                 type: this.type
             })

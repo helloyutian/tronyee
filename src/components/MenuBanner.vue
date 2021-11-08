@@ -1,18 +1,32 @@
 <template>
-    <div class="banner" :style="`background-image: url('https://www.chuangyisy.cn/uploads/201812/5c1cb588ba18f.jpg')`">
-        <h1>标题标题</h1>
-        <div class="nav-list">
+    <div class="banner" :style="`background-image: url('http://www.chuangyisy.cn/uploads/201812/5c1cb588ba18f.jpg')`">
+        <h1>{{ currentRoute.name }}</h1>
+        <div v-if="currentRoute.childrens" class="nav-list">
             <div class="container">
                 <ul class="clearfix">
-                    <li class="active" style="width: 33.33%"><router-link to="/">二级标题1</router-link></li>
-                    <li style="width: 33.33%"><router-link to="/">二级标题2</router-link></li>
-                    <li style="width: 33.33%"><router-link to="/">二级标题3</router-link></li>
+                    <li
+                        v-for="item in currentRoute.childrens"
+                        :key="item.href"
+                        :class="{ active: item.href === $route.path }"
+                        :style="`width: ${ Math.floor(10000 / currentRoute.childrens.length) / 100 }%`"
+                    >
+                        <router-link :to="item.href">{{ item.name }}</router-link>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </template>
-
+<script lang="ts">
+import Vue from 'vue'
+import { mapState } from 'vuex'
+export default Vue.extend({
+    name: 'MenuBanner',
+    computed: {
+        ...mapState(['currentRoute'])
+    }
+})
+</script>
 <style lang="scss" scoped>
 @import '@/assets/scss/var.scss';
 .banner {
@@ -26,7 +40,7 @@
         font-weight: normal;
         color: #fff;
         text-align: center;
-        line-height: 190px;
+        line-height: 250px;
         font-size: 1.8rem;
     }
     .nav-list {

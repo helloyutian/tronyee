@@ -11,7 +11,7 @@ const routes: RouteConfig[] = [
     component: Home,
   },
   {
-    path: '/about',
+    path: '/about/:type?',
     name: 'About',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -19,9 +19,14 @@ const routes: RouteConfig[] = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
   {
-    path: '/production/:type?',
-    name: 'Production',
-    component: () => import(/* webpackChunkName: "production" */ '../views/About.vue'),
+    path: '/product/:type?',
+    name: 'Product',
+    component: () => import(/* webpackChunkName: "product" */ '../views/Product.vue'),
+  },
+  {
+    path: '/product/:type/:id',
+    name: 'ProductDetail',
+    component: () => import(/* webpackChunkName: "productDetail" */ '../views/ProductDetail.vue'),
   },
   {
     path: '/download/:type?',
@@ -31,17 +36,22 @@ const routes: RouteConfig[] = [
   {
     path: '/news/:type?',
     name: 'News',
-    component: () => import(/* webpackChunkName: "news" */ '../views/About.vue'),
+    component: () => import(/* webpackChunkName: "news" */ '../views/News.vue'),
+  },
+  {
+    path: '/news/:type/:id',
+    name: 'NewsDetail',
+    component: () => import(/* webpackChunkName: "newsDetail" */ '../views/NewsDetail.vue'),
   },
   {
     path: '/brand',
     name: 'Brand',
-    component: () => import(/* webpackChunkName: "brand" */ '../views/About.vue'),
+    component: () => import(/* webpackChunkName: "brand" */ '../views/Brand.vue'),
   },
   {
     path: '/contact',
     name: 'Contact',
-    component: () => import(/* webpackChunkName: "contact" */ '../views/About.vue'),
+    component: () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue'),
   },
 ];
 

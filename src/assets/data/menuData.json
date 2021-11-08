@@ -4,12 +4,12 @@
     "name": "关于创亿",
     "href": "/about",
     "childrens": [
-      { "name": "创亿简介", "href": "/about#intro", "type": "intro" },
-      { "name": "企业文化", "href": "/about#culture", "type": "culture" },
-      { "name": "荣誉资质", "href": "/about#honor", "type": "honor" },
+      { "name": "创亿简介", "href": "/about/intro", "type": "intro" },
+      { "name": "企业文化", "href": "/about/culture", "type": "culture" },
+      { "name": "荣誉资质", "href": "/about/honor", "type": "honor" },
       {
         "name": "公司环境",
-        "href": "/about#environment",
+        "href": "/about/environment",
         "type": "environment"
       }
     ]

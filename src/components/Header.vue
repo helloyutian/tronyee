@@ -8,7 +8,7 @@
             </div>
             <div class="navlist">
                 <ul>
-                    <li v-for="menuItem in menuList" :key="menuItem.href" :class="{ active: menuItem.href === $route.path }">
+                    <li v-for="menuItem in menuList" :key="menuItem.href" :class="{ active: menuItem.href === activeRoute }">
                         <router-link :to="menuItem.href">{{ menuItem.name }}</router-link>
                         <dl v-if="menuItem.childrens" class="dropdown">
                             <dd v-for="(item, idx) in menuItem.childrens" :key="item.href" :style="`transition-delay: 0.${ idx }s`">
@@ -31,25 +31,44 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import menuData from '@/assets/data/menuData.json';
-import { Route } from 'vue-router';
+
+interface RouteItemType {
+    href: string;
+    name: string;
+    childrens?: Array<{
+        href: string;
+        name: string;
+    }>
+}
 
 @Component
 export default class VHeader extends Vue {
-  private menuList = menuData;
+  private menuList: RouteItemType[] = menuData;
   get companyData() {
     return this.$store.state.companyData
   }
-  @Watch('$route')
-  onWatchChanged(newVal: Route) {
-      console.log(newVal)
-      for (let i = 0; i < menuData.length; i ++) {
-          const item = menuData[i]
-          if (newVal.path === item.href) {
-              console.log('xxxxx')
-          }
-      }
+  get activeRoute() {
+    // const route = this.$route.path.match('^/[a-zA-Z0-9]+') || ['']
+    let routeData = null
+    if (this.$route.path === '/') {
+        this.$store.commit('SET_CURRENT_ROUTE', this.menuList[0]);
+        return this.menuList[0].href
+    }
+    for (const item of this.menuList) {
+        // const item = this.menuList[i]
+        if (item.href === '/') {
+            continue
+        }
+        const reg = new RegExp(`^${ item.href }`)
+        if (reg.test(this.$route.path)) {
+            routeData = item
+            break
+        }
+    }
+    this.$store.commit('SET_CURRENT_ROUTE', routeData);
+    return routeData ? routeData.href : '';
   }
 }
 </script>

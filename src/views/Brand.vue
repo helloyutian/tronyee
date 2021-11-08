@@ -3,90 +3,14 @@
     <!-- // 栏目标题 -->
     <menu-banner></menu-banner>
     <!--------------- 内容 ---------------->
-    <!-- 关于 -->
-    <div id="intro" ref="intro" class="session pt-0">
-      <div class="session-tit">关于创亿</div>
-      <div class="container clearfix">
-        <div class="company-pic"><img :src="companyData.img" :alt="companyData.name"></div>
-        <div class="company-intro">{{ companyData.introduce }}</div>
-      </div>
-    </div>
 
-    <!-- 文化 -->
-    <div id="culture" ref="culture" class="session drak-bg">
-      <div class="session-tit">企业文化</div>
-      <div class="container">
-        <div class="company-culture">{{ companyData.culture }}</div>
-      </div>
-    </div>
-
-    <!-- 荣誉 -->
-    <div id="honor" ref="honor" class="session">
-      <div class="session-tit">荣誉资质</div>
-      <div class="container">
-        <div class="company-honor">
-          <ul class="clearfix">
-            <li v-for="item in companyData.honorImgs" :key="item.id">
-              <div class="box">
-                <div class="honor-img"><img :src="item.url" alt=""></div>
-              </div>
-              <p>{{ item.name }}</p>
-            </li>
-            <!-- <li>
-              <div class="box">
-                <div class="honor-img"><img src="http://www.chuangyisy.cn/uploads/201910/5daaeddbdec5d.jpg" alt=""></div>
-              </div>
-              <p>深圳市电子商会会员单位</p>
-            </li>
-            <li>
-              <div class="box">
-                <div class="honor-img"><img src="http://www.chuangyisy.cn/uploads/201910/5daaeddc916bb.jpg" alt=""></div>
-              </div>
-              <p>深圳市电子商会会员单位</p>
-            </li>
-            <li>
-              <div class="box">
-                <div class="honor-img"><img src="@/assets/img/a.jpg" alt=""></div>
-              </div>
-              <p>深圳市电子商会会员单位</p>
-            </li> -->
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- 环境 -->
-    <div id="environment" ref="environment" class="session pt-0">
-      <div class="session-tit">公司环境</div>
-      <div class="container">
-        <div class="company-envi">
-          <ul class="clearfix">
-            <li v-for="item in companyData.envImgs" :key="item.id">
-              <div class="img-item" :style="`background-image: url('${ item.url }')`"></div>
-            </li>
-            <!-- <li>
-              <div class="img-item" style="background-image: url('http://www.chuangyisy.cn/uploads/201910/5daaeb6781551.jpg')"></div>
-            </li>
-            <li>
-              <div class="img-item" style="background-image: url('http://www.chuangyisy.cn/uploads/201910/5daaeafc03a53.jpg')"></div>
-            </li>
-            <li>
-              <div class="img-item" style="background-image: url('http://www.chuangyisy.cn/uploads/201910/5daaeb6781551.jpg')"></div>
-            </li>
-            <li>
-              <div class="img-item" style="background-image: url('http://www.chuangyisy.cn/uploads/201910/5daaeafc03a53.jpg')"></div>
-            </li> -->
-          </ul>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
 export default Vue.extend({
-  name: 'About',
+  name: 'Brand',
   // data() {
   //   return {
   //     step: 0
