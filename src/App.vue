@@ -48,7 +48,47 @@ export default Vue.extend({
     }
   }
 }
+.local {
+  font-size: .92rem;
+  margin-top: -3rem;
+  margin-bottom: 4rem;
+}
+.detail-pager {
+  border-top: 1px solid $borderColor;
+  padding: 3rem 0 1rem;
+  font-size: .92rem;
+  line-height: 2;
+  .fl {
+    width: 50%;
+  }
+  .nav-link {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .btn-back {
+    display: block;
+    width: 8rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    background-color: #eee;
+    text-align: center;
+  }
+}
+
 // -------- 动画 -------
+.img-scale {
+  img, .img-item {
+    transform: scale(1);
+    transition: all ease .5s;
+  }
+  &:hover {
+    img, .img-item {
+      transform: scale(1.1);
+      transition: all ease .5s;
+    }
+  }
+}
 // 透明的
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;

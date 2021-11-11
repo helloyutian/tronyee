@@ -168,3 +168,10 @@ a:hover, a:active {
 .fr {
     float: right;
 }
+
+.border-top {
+    border-top: 1px solid $borderColor;
+}
+.border-btm {
+    border-bottom: 1px solid $borderColor;
+}

@@ -10,7 +10,7 @@
                         <span class="icon iconfont icon-xiazai"></span>
                         <h4>{{ item.name }}</h4>
                         <p class="count">下载次数： 0</p>
-                        <p class="date">更新时间：{{ item.modifyTime | dateFormate('YYYY-MM-DD') }}</p>
+                        <p class="date">更新时间：{{ $dateFormate(item.modifyTime, 'YYYY-MM-DD') }}</p>
                     </a>
                 </li>
             </ul>
@@ -31,7 +31,6 @@
 <script lang="ts">
 import { getOssInfo } from '@/utils/apis';
 import Vue from 'vue';
-import { dateFormate } from '@/utils'
 
 export default Vue.extend({
     name: 'Download',
@@ -44,9 +43,6 @@ export default Vue.extend({
                 pageSize: 20
             }
         }
-    },
-    filters: {
-        dateFormate
     },
     computed: {
         type() {

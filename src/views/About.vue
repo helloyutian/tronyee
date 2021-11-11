@@ -28,17 +28,17 @@
           <ul class="clearfix">
             <li v-for="item in companyData.honorImgs" :key="item.id">
               <div class="box">
-                <div class="honor-img"><img :src="item.url" alt=""></div>
+                <div class="honor-img img-scale"><img class="img-full" :src="item.url" alt=""></div>
               </div>
               <p>{{ item.name }}</p>
             </li>
-            <!-- <li>
+            <li>
               <div class="box">
-                <div class="honor-img"><img src="http://www.chuangyisy.cn/uploads/201910/5daaeddbdec5d.jpg" alt=""></div>
+                <div class="honor-img img-scale"><img class="img-full" src="http://www.chuangyisy.cn/uploads/201910/5daaeddbdec5d.jpg" alt=""></div>
               </div>
               <p>深圳市电子商会会员单位</p>
             </li>
-            <li>
+            <!-- <li>
               <div class="box">
                 <div class="honor-img"><img src="http://www.chuangyisy.cn/uploads/201910/5daaeddc916bb.jpg" alt=""></div>
               </div>
@@ -61,7 +61,7 @@
       <div class="container">
         <div class="company-envi">
           <ul class="clearfix">
-            <li v-for="item in companyData.envImgs" :key="item.id">
+            <li v-for="item in companyData.envImgs" :key="item.id" class="img-scale">
               <div class="img-item" :style="`background-image: url('${ item.url }')`"></div>
             </li>
             <!-- <li>
@@ -193,13 +193,6 @@ export default Vue.extend({
         width: 100%;
         > img {
           max-width: 100%;
-          transition: all ease-out .2s;
-        }
-        &:hover {
-          > img {
-            transform: scale(1.3);
-            transition: all ease-in .2s;
-          }
         }
       }
       > p {
@@ -235,14 +228,6 @@ export default Vue.extend({
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        transform: scale(1);
-          transition: all ease .7s;
-      }
-      &:hover {
-        .img-item {
-          transform: scale(1.2);
-          transition: all ease .7s;
-        }
       }
     }
   }

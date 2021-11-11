@@ -5,7 +5,7 @@
         <!-- // 内容 -->
         <div class="container">
             <ul class="product-list clearfix">
-                <li v-for="item in productList" :key="item.id" class="pro-item clearfix">
+                <li v-for="item in productList" :key="item.id" class="pro-item img-scale clearfix">
                     <div class="product-pic">
                         <router-link :to="`/product/${ item.type }/${ item.id }`">
                             <img class="img-full" :src="item.img.split(',')[0]" alt="a">
@@ -13,12 +13,12 @@
                     </div>
                     <div class="poduct-intro">
                         <h3><router-link :to="`/product/${ item.type }/${ item.id }`">{{ item.name }}</router-link></h3>
-                        <p class="type">{{ item.type }}</p>
+                        <p class="type">{{ $getRouteItemName(item.type, currentRoute.childrens) }}</p>
                         <div class="desc">{{ item.description }}</div>
                         <router-link class="btn" :to="`/product/${ item.type }/${ item.id }`">查看详情+</router-link>
                     </div>
                 </li>
-                <li class="pro-item clearfix" >
+                <!-- <li class="pro-item clearfix" >
                     <div class="product-pic">
                         <router-link to="/">
                             <img class="img-full" src="@/assets/img/a.jpg" alt="a">
@@ -43,7 +43,7 @@
                         <div class="desc">三星贴片电容寿命长、耐高温、准确度高、滤高频谐波性能极好。在电解电容器工作过程中，具有自动修补或隔绝氧化膜中的疵点所在的性能。</div>
                         <router-link class="btn" to="/">查看详情+</router-link>
                     </div>
-                </li>
+                </li> -->
             </ul>
             <!-- // 分页  -->
             <el-pagination
@@ -62,7 +62,6 @@
 <script lang="ts">
 import { getProductInfo } from '@/utils/apis';
 import Vue from 'vue';
-import { dateFormate } from '@/utils'
 
 export default Vue.extend({
     name: 'Product',
@@ -76,16 +75,30 @@ export default Vue.extend({
             }
         }
     },
-    filters: {
-        dateFormate
-    },
+    // beforeRouteUpdate(from, to, next) {
+    //     console.log('update')
+    //     next()
+    // },
     computed: {
         type() {
             return this.$route.params.type
+        },
+        currentRoute(): RouteItemType {
+            return this.$store.state.currentRoute
+        }
+    },
+    watch: {
+        type() {
+            this.menuChange()
         }
     },
     mounted() {
-        this.getProductList()
+        this.$nextTick(() => {
+            if (this.type && !this.currentRoute.childrens?.some(item => item.type === this.type )) {
+                return this.$router.replace('/404')
+            }
+            this.getProductList()
+        })
     },
     methods: {
         async getProductList() {
@@ -95,6 +108,10 @@ export default Vue.extend({
             })
             this.productList = res.list
             this.total = res.total
+        },
+        menuChange() {
+            this.queryParam.pageNum = 1
+            this.getProductList()
         }
     }
 });
@@ -116,17 +133,17 @@ export default Vue.extend({
     transition: all ease-out .2s;
     .product-pic {
         width: 240px;
-        max-height: 240px;
+        height: 240px;
         overflow: hidden;
         float: left;
         img {
             max-height: 100%;
-            transform: scale(1);
-            transition: all ease .4s;
-            &:hover {
-                transform: scale(1.1);
-                transition: all ease .4s;
-            }
+            // transform: scale(1);
+            // transition: all ease .4s;
+            // &:hover {
+            //     transform: scale(1.1);
+            //     transition: all ease .4s;
+            // }
         }
     }
     .poduct-intro {

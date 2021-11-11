@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "540396",
+      "name": "ic_mobile",
+      "font_class": "icmobile",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "160001",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "611360",
+      "name": "time",
+      "font_class": "time",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "949533",
+      "name": "aui-icon-back",
+      "font_class": "aui-icon-back",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "7275417",
+      "name": "View",
+      "font_class": "View",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
+    },
+    {
+      "icon_id": "8327186",
+      "name": "qq",
+      "font_class": "qq1",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
       "icon_id": "9923737",
       "name": "下载",
       "font_class": "xiazai",

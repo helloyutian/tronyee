@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
+import Error from '../views/Error.vue';
 
 Vue.use(VueRouter);
 
@@ -52,6 +53,11 @@ const routes: RouteConfig[] = [
     path: '/contact',
     name: 'Contact',
     component: () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue'),
+  },
+  {
+    path: '*',
+    name: 'Error',
+    component: () => import('../views/Error.vue'),
   },
 ];
 

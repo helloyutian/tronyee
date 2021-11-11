@@ -103,7 +103,7 @@
                         <swiper-slide v-for="item in dynamicLlist" :key="item.cid" class="slide-item">
                             <img class="img-cover" :src="item.titlePic" alt="xxx">
                             <div class="txt">
-                                <span>{{ item.created * 1000 | dateFormate('MM-DD') }}</span>
+                                <span>{{ $dateFormate(item.created, 'MM-DD') }}</span>
                                 <p>{{ item.title }}</p>
                             </div>
                         </swiper-slide>
@@ -140,7 +140,7 @@
                                 <div class="pic fl"><img class="img-full" :src="item.titlePic" alt=""></div>
                                 <div class="txt">
                                     <h3>{{ item.title }}</h3>
-                                    <p class="date">{{ item.created * 1000 | dateFormate('YYYY-MM-DD') }}</p>
+                                    <p class="date">{{ $dateFormate(item.created, 'YYYY-MM-DD') }}</p>
                                     <p class="intro">{{ item.slug }}</p>
                                 </div>
                             </li>
@@ -164,21 +164,10 @@
 <script lang="ts">
 // swiper, swiperSlide
 import { Component, Vue } from 'vue-property-decorator';
-import { swiper, swiperSlide } from 'vue-awesome-swiper';
-import 'swiper/dist/css/swiper.css';
 import '@/assets/scss/animate.css';
 import { getArticleInfo, getOssByType } from '@/utils/apis';
-import { dateFormate } from '@/utils'
 
-@Component({
-  components: {
-    swiper,
-    swiperSlide,
-  },
-  filters: {
-      dateFormate
-  }
-})
+@Component({})
 export default class Home extends Vue {
     private bannerOption = {
         autoplay: 5000,

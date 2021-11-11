@@ -1,7 +1,7 @@
 <template>
     <div class="banner" :style="`background-image: url('http://www.chuangyisy.cn/uploads/201812/5c1cb588ba18f.jpg')`">
         <h1>{{ currentRoute.name }}</h1>
-        <div v-if="currentRoute.childrens" class="nav-list">
+        <div v-if="!menuDisabled && currentRoute.childrens" class="nav-list">
             <div class="container">
                 <ul class="clearfix">
                     <li
@@ -9,6 +9,7 @@
                         :key="item.href"
                         :class="{ active: item.href === $route.path }"
                         :style="`width: ${ Math.floor(10000 / currentRoute.childrens.length) / 100 }%`"
+                        @click="handdleMenuChange(item.type)"
                     >
                         <router-link :to="item.href">{{ item.name }}</router-link>
                     </li>
@@ -22,8 +23,16 @@ import Vue from 'vue'
 import { mapState } from 'vuex'
 export default Vue.extend({
     name: 'MenuBanner',
+    props: {
+        menuDisabled: Boolean
+    },
     computed: {
         ...mapState(['currentRoute'])
+    },
+    methods: {
+        handdleMenuChange(type: string) {
+            this.$emit('menuChange', type)
+        }
     }
 })
 </script>

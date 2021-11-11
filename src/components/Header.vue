@@ -34,15 +34,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import menuData from '@/assets/data/menuData.json';
 
-interface RouteItemType {
-    href: string;
-    name: string;
-    childrens?: Array<{
-        href: string;
-        name: string;
-    }>
-}
-
 @Component
 export default class VHeader extends Vue {
   private menuList: RouteItemType[] = menuData;
@@ -156,9 +147,12 @@ export default class VHeader extends Vue {
                     padding: 0 6px;
                     height: 2.3rem;
                     line-height: 2.3rem;
-                    border-bottom: 1px solid $borderColor;
                     transform: rotateY(90deg);
+                    border-top: 1px solid $borderColor;
                     // transition: all ease-out .2s;
+                    &:first-child {
+                        border-top: none;
+                    }
                     > a {
                         display: block;
                         height: 100%;

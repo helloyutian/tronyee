@@ -1,10 +1,16 @@
+interface RouteChildrenItemType {
+    name: string;
+    href: string;
+    type: string;
+}
 // 日期格式化
-export const dateFormate = (date: Date, format = 'YYYY-MM-DD hh:mm:ss') => {
+export const dateFormate = (date: number|string, format = 'YYYY-MM-DD hh:mm:ss') => {
     // format  Y:年 M:月 D:日 h:时 m:分 s: 秒  例如：YYYY-MM-DD hh:mm:ss
     // if (typeof format !== 'string') {
     //     throw new Error('DateFormate 的第二个参数必须是字符串')
     // }
-    const time = new Date(date);
+    const datetime = typeof date === 'string' ? date : date * 1000
+    const time = new Date(datetime);
     const timeObj: ObjectType = {
         y: String(time.getFullYear()),
         m: String(time.getMonth() + 1),
@@ -48,4 +54,11 @@ export const dateFormate = (date: Date, format = 'YYYY-MM-DD hh:mm:ss') => {
         }
     }
     return dateArr.join('')
+}
+
+// 获取名称
+export const getRouteItemName = (type: string, routeList: RouteChildrenItemType[]) => {
+    if (!routeList) return type;
+    const arr = routeList.filter(item => item.type === type)
+    return arr[0] ? arr[0].name : ''
 }

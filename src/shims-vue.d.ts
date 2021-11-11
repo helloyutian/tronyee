@@ -18,3 +18,13 @@ interface RequestParamsType {
   params?: object;
   headers?: object;
 }
+
+interface RouteItemType {
+  href: string;
+  name: string;
+  childrens?: Array<{
+      href: string;
+      name: string;
+      type: string;
+  }>
+}
