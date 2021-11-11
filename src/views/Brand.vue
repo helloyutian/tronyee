@@ -7,7 +7,7 @@
       <ul class="brand-list clearfix">
         <li v-for="item in brandList" :key="item.id" class="brand-item">
           <div class="brand-img img-scale">
-            <router-link to="/"><img class="img-full" :src="item.img" alt=""></router-link>
+            <router-link to="/"><img class="img-contain" :src="item.img" alt=""></router-link>
           </div>
           <p><router-link to="/">{{ item.name }}</router-link></p>
         </li>
@@ -53,6 +53,7 @@ export default Vue.extend({
     .brand-img {
       box-sizing: border-box;
       overflow: hidden;
+      height: 201px;
       border: 1px solid $borderColor;
       border-radius: .5rem;
     }
@@ -67,6 +68,16 @@ export default Vue.extend({
   .brand-list {
     .brand-item {
       width: 23%;
+    }
+  }
+}
+@media (max-width: $middleScreen) {
+  .brand-list {
+    .brand-item {
+      width: 31.33%;
+      .brand-img {
+        height: 160px;
+      }
     }
   }
 }

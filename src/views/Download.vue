@@ -106,6 +106,12 @@ export default Vue.extend({
             margin-right: 0;
         }
     }
+    @media (max-width: $smallScreen) {
+        .dl-item {
+            width: 100%;
+            margin-right: 0%;
+        }
+    }
 }
 
 </style>

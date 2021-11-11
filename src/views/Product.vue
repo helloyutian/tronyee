@@ -152,6 +152,9 @@ export default Vue.extend({
         > h3 {
             font-size: 1.2rem;
             font-weight: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .type {
             font-size: .8rem;
@@ -179,16 +182,29 @@ export default Vue.extend({
         margin-right: 0;
     }
     &:hover {
-        box-shadow: 0 .5rem 1rem rgba($color: #000000, $alpha: .2);
-        transition: all ease-in .2s;
+        box-shadow: 0 .3rem .5rem rgba($color: #000000, $alpha: .1);
+        transition: all ease .2s;
         .poduct-intro {
             .btn {
                 background-color: $blueColor;
                 border-color: $blueColor;
                 color: #fff;
-                transition: all ease-in .2s;
+                transition: all ease .2s;
             }
         }
+    }
+    @media (max-width: $middleScreen) {
+        .product-pic {
+            width: 160px;
+            height: 160px;
+        }
+        .poduct-intro {
+            margin-left: 180px;
+        }
+    }
+    @media (max-width: $smallScreen) {
+        width: 100%;
+        margin-right: 0%;
     }
 }
 

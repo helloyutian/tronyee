@@ -102,6 +102,7 @@ export default Vue.extend({
   > li {
     float: left;
     width: 25%;
+    margin-bottom: 2rem;
     .icon {
       width: 3.6rem;
       height: 3.6rem;
@@ -111,7 +112,7 @@ export default Vue.extend({
       display: inline-block;
       text-align: center;
       vertical-align: middle;
-      margin-right: 1em;
+      margin-right: .6em;
       .iconfont {
         font-size: 2rem;
       }
@@ -126,6 +127,28 @@ export default Vue.extend({
       }
       > p {
         font-size: 1.3rem;
+      }
+    }
+  }
+  @media (max-width: $largeScreen) {
+    > li {
+      white-space: nowrap;
+      .txt {
+        > p {
+          font-size: 1.2rem;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+  @media (max-width: $middleScreen) {
+    > li {
+      width: 50%;
+      .txt {
+        > p {
+          font-size: 1.2rem;
+          white-space: nowrap;
+        }
       }
     }
   }

@@ -29,6 +29,11 @@ Vue.component(Pagination.name, Pagination);
 Vue.prototype.$getRouteItemName = getRouteItemName
 Vue.prototype.$dateFormate = dateFormate
 
+router.beforeEach((to, from, next) => {
+  document.title = to.meta?.title
+  next()
+})
+
 new Vue({
   router,
   store,

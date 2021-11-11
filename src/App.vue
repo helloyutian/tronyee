@@ -52,6 +52,9 @@ export default Vue.extend({
   font-size: .92rem;
   margin-top: -3rem;
   margin-bottom: 4rem;
+  @media (max-width: $smallScreen) {
+    margin-bottom: 2.6rem;
+  }
 }
 .detail-pager {
   border-top: 1px solid $borderColor;
@@ -73,6 +76,15 @@ export default Vue.extend({
     line-height: 2.5rem;
     background-color: #eee;
     text-align: center;
+    border-radius: 5px;
+    margin-top: .5em;
+    &:hover {
+      background-color: $blueColor;
+      color: #fff;
+    }
+  }
+  @media (max-width: $smallScreen) {
+    padding: 2rem 0 1rem;
   }
 }
 

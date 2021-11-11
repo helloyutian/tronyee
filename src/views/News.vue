@@ -8,7 +8,7 @@
                 <ul class="clearfix">
                     <li v-for="item in hotList" :key="item.cid">
                         <div class="hot-item img-scale">
-                            <div class="pic"><router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-full" :src="item.titlePic" alt=""></router-link></div>
+                            <div class="pic"><router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link></div>
                             <h3><router-link :to="`/news/${ item.type }/${ item.cid }`">{{ item.title }}</router-link></h3>
                             <p class="date">{{ item.created }}</p>
                             <p class="desc">{{ item.slug }}</p>
@@ -17,7 +17,7 @@
                     </li>
                     <!-- <li>
                         <div class="hot-item img-scale">
-                            <div class="pic"><router-link to="/"><img class="img-full" src="http://www.chuangyisy.cn/uploads/202109/612f48823d9ea.jpg" alt=""></router-link></div>
+                            <div class="pic"><router-link to="/"><img class="img-cover" src="http://www.chuangyisy.cn/uploads/202109/612f48823d9ea.jpg" alt=""></router-link></div>
                             <h3><router-link to="/">创亿实业：贴片电容怎么看大小？</router-link></h3>
                             <p class="date">2019-10-08</p>
                             <p class="desc">贴片电容很多由于体积所限，不能标注其容量，所以一般都是在贴片生产时的整盘上有标注。如果是单个的贴片电容，要用电容测试仪测出它的容量。如果是同一个厂标的话，一般来说颜色深的容量比颜色浅的要大，棕灰>浅紫>灰白。当然最好的方法是用热风枪吹下来，等...</p>
@@ -26,7 +26,7 @@
                     </li>
                     <li>
                         <div class="hot-item img-scale">
-                            <div class="pic"><router-link to="/"><img class="img-full" src="http://www.chuangyisy.cn/uploads/202109/612f48823d9ea.jpg" alt=""></router-link></div>
+                            <div class="pic"><router-link to="/"><img class="img-cover" src="http://www.chuangyisy.cn/uploads/202109/612f48823d9ea.jpg" alt=""></router-link></div>
                             <h3><router-link to="/">创亿实业：贴片电容怎么看大小？</router-link></h3>
                             <p class="date">2019-10-08</p>
                             <p class="desc">贴片电容很多由于体积所限，不能标注其容量，所以一般都是在贴片生产时的整盘上有标注。如果是单个的贴片电容，要用电容测试仪测出它的容量。如果是同一个厂标的话，一般来说颜色深的容量比颜色浅的要大，棕灰>浅紫>灰白。当然最好的方法是用热风枪吹下来，等...</p>
@@ -38,7 +38,7 @@
             <div class="list">
                 <ul>
                     <li v-for="item in newsList" :key="item.cid" class="clearfix img-scale">
-                        <div class="pic"><router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-full" :src="item.titlePic" alt=""></router-link></div>
+                        <div class="pic"><router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link></div>
                         <div class="txt">
                             <h3><router-link :to="`/news/${ item.type }/${ item.cid }`">{{ item.title }}</router-link></h3>
                             <p class="date"><span class="iconfont icon-time"></span> {{ item.created }}</p>
@@ -47,7 +47,7 @@
                         </div>
                     </li>
                     <!-- <li class="clearfix img-scale">
-                        <div class="pic"><router-link to="/"><img class="img-full" src="http://www.chuangyisy.cn/uploads/202006/5ee6d173d349a.jpg" alt=""></router-link></div>
+                        <div class="pic"><router-link to="/"><img class="img-cover" src="http://www.chuangyisy.cn/uploads/202011/5fb2537e71132.jpg" alt=""></router-link></div>
                         <div class="txt">
                             <h3><router-link to="/">创亿实业：贴片电容怎么看大小？</router-link></h3>
                             <p class="date"><span class="iconfont icon-time"></span> 2019-10-08</p>
@@ -56,7 +56,7 @@
                         </div>
                     </li>
                     <li class="clearfix img-scale">
-                        <div class="pic"><router-link to="/"><img class="img-full" src="http://www.chuangyisy.cn/uploads/202006/5ee6d173d349a.jpg" alt=""></router-link></div>
+                        <div class="pic"><router-link to="/"><img class="img-cover" src="http://www.chuangyisy.cn/uploads/202006/5ee196c767938.jpg" alt=""></router-link></div>
                         <div class="txt">
                             <h3><router-link to="/">创亿实业：贴片电容怎么看大小？</router-link></h3>
                             <p class="date"><span class="iconfont icon-time"></span> 2019-10-08</p>
@@ -140,7 +140,7 @@ export default Vue.extend({
             float: left;
             width: 33.33%;
             .hot-item {
-                margin: 0 11px;
+                margin: 0 3%;
                 background-color: #f5f5f5;
                 border-radius: .5rem;
                 overflow: hidden;
@@ -148,7 +148,7 @@ export default Vue.extend({
                 position: relative;
                 .pic {
                     width: 100%;
-                    height: auto;
+                    height: 240px;
                     overflow: hidden;
                 }
                 > h3 {
@@ -200,12 +200,23 @@ export default Vue.extend({
             }
             &:first-child {
                 .hot-item {
-                    margin: 0 22px 0 0;
+                    margin: 0 6% 0 0;
                 }
             }
             &:last-child {
                 .hot-item {
-                    margin: 0 0 0 22px;
+                    margin: 0 0 0 6%;
+                }
+            }
+        }
+    }
+    @media (max-width: $middleScreen) {
+        > ul {
+            > li {
+                .hot-item {
+                    .pic {
+                        height: 200px;
+                    }
                 }
             }
         }
@@ -221,7 +232,7 @@ export default Vue.extend({
                 width: 28%;
                 overflow: hidden;
                 margin-right: 2%;
-                height: 240px;
+                height: 200px;
             }
             .txt {
                 > h3 {
@@ -252,6 +263,15 @@ export default Vue.extend({
                 .link {
                     font-size: 0.92rem;
                     color: $blueColor;
+                }
+            }
+        }
+    }
+    @media (max-width: $middleScreen) {
+        > ul {
+            > li {
+                .pic {
+                    width: 240px;
                 }
             }
         }

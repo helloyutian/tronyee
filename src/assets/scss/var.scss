@@ -23,6 +23,15 @@ $navHeight: 90px;
 $sessionShadow: 0 0 15px rgba($color: #000000, $alpha: .06);
 
 // 大屏幕
-$largeScreen:  1360px;
-$middleScreen: 1000px;
+$largeScreen:  1280px;
+$middleScreen: 1024px;
 $smallScreen:  800px;
+
+// @media (max-width: $largeScreen) {
+// }
+
+// @media (max-width: $middleScreen) {
+// }
+
+// @media (max-width: $smallScreen) {
+// }

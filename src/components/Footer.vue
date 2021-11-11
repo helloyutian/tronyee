@@ -143,6 +143,11 @@ export default Vue.extend({
             }
         }
     }
+    @media (max-width: $smallScreen) {
+        .foot-right {
+            display: none;
+        }
+    }
 }
 
 </style>

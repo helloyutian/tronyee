@@ -5,6 +5,9 @@ html, body {
     padding: 0;
     height: 100%;
     font-size: 16px;
+    @media (max-width: $middleScreen) {
+        font-size: 15px;
+    }
 }
 body {
     font-family: 'Microsoft YaHei', Avenir, Helvetica, Arial, sans-serif;
@@ -155,6 +158,8 @@ a:hover, a:active {
     width: 100%;
     margin: 0 auto;
     position: relative;
+    box-sizing: border-box;
+    padding: 0 10px;
     @media (min-width: $middleScreen) {
         width: 1000px;
     }

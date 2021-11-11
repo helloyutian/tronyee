@@ -95,7 +95,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-    name: 'Product',
+    name: 'ProductDetail',
     data() {
         return {
             productList: [],
@@ -186,7 +186,6 @@ export default Vue.extend({
     box-sizing: border-box;
     border: 1px solid $borderColor;
     background-color: #f5f5f5;
-    margin-right: 30px;
     .viewer-slide {
         .viewer-prev, .viewer-next {
             padding: 8px 3px;
@@ -220,12 +219,21 @@ export default Vue.extend({
             background-color: rgba($color: #000000, $alpha: .6);
         }
     }
+    @media (max-width: $middleScreen) {
+        width: 50%;
+    }
+    @media (max-width: $smallScreen) {
+        width: 100%;
+        border: none;
+        float: none;
+    }
 }
 .pro-attr {
     padding-left: 530px;
     > h1 {
         font-size: 1.6rem;
         line-height: 1.2;
+        padding-top: 1rem;
         padding-bottom: 1rem;
         font-weight: normal;
         border-bottom: 1px solid $borderColor2;
@@ -260,9 +268,12 @@ export default Vue.extend({
             width: 15rem;
             height: 50px;
             border: 2px solid #222;
-            margin-right: 1rem;
             border-radius: .5rem;
             transition: all ease .2s;
+            margin-bottom: 1rem;
+            &.online {
+                margin-right: 1rem;
+            }
             &:hover, &:active, &.online {
                 background-color: #333;
                 color: #fff;
@@ -271,6 +282,24 @@ export default Vue.extend({
             .iconfont {
                 font-size: 1.8rem;
                 vertical-align: bottom;
+            }
+        }
+    }
+    @media (max-width: $middleScreen) {
+        padding-left: 52%;
+        .btns {
+            > a {
+                width: 11rem;
+            }
+        }
+    }
+    @media (max-width: $smallScreen) {
+        padding-left: 0;
+        .btns {
+            text-align: center;
+            > a {
+                width: 48%;
+                margin-right: 1%;
             }
         }
     }
@@ -305,6 +334,7 @@ export default Vue.extend({
         > li {
             width: 25%;
             float: left;
+            margin-top: 1.5rem;
             .pic {
                 margin: 0 3%;
             }
@@ -315,6 +345,13 @@ export default Vue.extend({
                 overflow: hidden;
                 text-align: center;
                 white-space: nowrap;
+            }
+        }
+    }
+    @media (max-width: $smallScreen) {
+        > ul {
+            > li {
+                width: 50%;
             }
         }
     }

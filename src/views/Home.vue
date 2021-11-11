@@ -91,7 +91,7 @@
         </div>
     </div>
     <div ref="newsElem" class="session news">
-        <div class="container">
+        <div class="container clearfix">
             <div class="exhibition animated" :class="{ fadeInLeftBig: isShowNews }">
                 <div class="tit">
                     <router-link class="more fr" to="/news/dynamic"><span>M</span>ORE+</router-link>
@@ -107,20 +107,6 @@
                                 <p>{{ item.title }}</p>
                             </div>
                         </swiper-slide>
-                        <!-- <swiper-slide class="slide-item">
-                            <img class="img-cover" src="https://www.chuangyisy.cn/uploads/202006/5ee196c767938.jpg" alt="xxx">
-                            <div class="txt">
-                                <span>10-27</span>
-                                <p>数据库的flak的，上的飞机咋啦11111</p>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide class="slide-item">
-                            <img class="img-cover" src="https://www.chuangyisy.cn/uploads/202004/5eaa9911d4af1.jpg" alt="xxx">
-                            <div class="txt">
-                                <span>10-27</span>
-                                <p>数据库的flak的，上的飞机咋啦22222</p>
-                            </div>
-                        </swiper-slide> -->
                         <div class="swiper-button-prev exhi-prev" slot="button-prev"></div>
                         <div class="swiper-button-next exhi-next" slot="button-next"></div>
                     </swiper>
@@ -129,7 +115,7 @@
             <!-- 产品百科 -->
             <div class="wiki animated" :class="{ fadeInRightBig: isShowNews }">
                 <div class="tit">
-                    <router-link class="more fr" to="/news/wiki"><span>M</span>ORE+</router-link>
+                    <router-link class="more fr" to="/news/product"><span>M</span>ORE+</router-link>
                     <p>Brand Dynamics</p>
                     <h2>产品百科</h2>
                 </div>
@@ -311,12 +297,14 @@ export default class Home extends Vue {
     padding: 1rem 0;
     background-color: #ececec;
     .tit {
-        padding-right: 18%;
         line-height: 1.5;
+        margin: 0 5px;
     }
     .intro {
         font-size: .85rem;
-        line-height: 1.5;
+        line-height: 1.6;
+        padding-left: 30%;
+        padding-right: 1em;
     }
 }
 .product-list {
@@ -410,6 +398,9 @@ export default class Home extends Vue {
             
         }
     }
+    @media (max-width: $middleScreen) {
+        margin: 2rem 0 2rem;
+    }
 }
 .about {
     margin-bottom: 4rem;
@@ -442,6 +433,7 @@ export default class Home extends Vue {
         height: 100%;
         padding-top: 50px;
         padding-left: 60px;
+        padding-bottom: 50px;
         box-sizing: border-box;
         color: #fff;
         > h2 {
@@ -466,9 +458,12 @@ export default class Home extends Vue {
             }
         }
         > p {
-            width: 65%;
+            width: 90%;
+            max-width: 500px;
+            padding-right: 1rem;
             font-size: 0.9rem;
             line-height: 1.8;
+            word-break: break-all;
         }
         .about-icon {
             padding-top: 30px;
@@ -506,6 +501,8 @@ export default class Home extends Vue {
                     > p {
                         font-size: .7rem;
                         opacity: .6;
+                        white-space: nowrap;
+                        
                     }
                     &::after {
                         content: '\20';
@@ -528,15 +525,36 @@ export default class Home extends Vue {
                             transition: all ease .3s;
                         }
                     }
+                    @media (max-width: $middleScreen) {
+                        margin-right: 2rem;
+                        &::after {
+                            right: -2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media (max-width: $smallScreen) {
+        margin-bottom: 2rem;
+        height: auto;
+        .bg-img {
+            width: 100%;
+            height: 400px;
+        }
+        .about-intro {
+            width: 100%;
+            position: relative;
+            > h2 {
+                &::before {
+                    display: none;
                 }
             }
         }
     }
 }
 .news {
-    .container {
-        display: flex;
-    }
+    
     .tit {
         margin-bottom: 20px;
         > p {
@@ -561,9 +579,9 @@ export default class Home extends Vue {
         }
     }
     .exhibition {
-        flex: none;
         width: 36%;
         margin-right: 30px;
+        float: left;
         .con {
             width: 100%;
             height: 375px;
@@ -651,7 +669,6 @@ export default class Home extends Vue {
     }
     .wiki {
         width: 100%;
-        flex: auto;
         .con {
             > ul {
                 > li {
@@ -736,6 +753,13 @@ export default class Home extends Vue {
                     }
                 }
             }
+        }
+    }
+     @media (max-width: $smallScreen) {
+        .exhibition {
+            width: 100%;
+            float: none;
+            margin-bottom: 2rem;
         }
         
     }

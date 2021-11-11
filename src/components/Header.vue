@@ -83,7 +83,7 @@ export default class VHeader extends Vue {
     }
     .brand {
         position: absolute;
-        width: 160px;
+        width: 230px;
         height: 75px;
         background-color: #ccc;
         top: 7px;
@@ -94,9 +94,6 @@ export default class VHeader extends Vue {
         a {
             display: table-cell;
             vertical-align: middle;
-        }
-        @media (min-width: $largeScreen) {
-            width: 250px;
         }
     }
     .navlist {
@@ -120,6 +117,9 @@ export default class VHeader extends Vue {
                 position: relative;
                 z-index: 2;
                 transition: color .15s ease-out;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             &::after {
                 content: '\20';
@@ -194,12 +194,13 @@ export default class VHeader extends Vue {
         top: 50%;
         margin-top: -21px;
         line-height: 1.5;
+        color: $blueColor;
         > h3 {
             // font-weight: normal;
             font-size: .9rem;
         }
         > p {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
     }
     .navbtn {
@@ -230,6 +231,19 @@ export default class VHeader extends Vue {
             width: 200px;
             background-color: rgba($color: #fff, $alpha: .8);
             box-shadow: 0 .5rem 1rem rgba($color: #000000, $alpha: .2);
+        }
+    }
+    @media (max-width: $largeScreen) {
+        .brand {
+            width: 150px;
+        }
+    }
+    @media (max-width: $middleScreen) {
+        .navlist {
+            padding-right: 1rem;
+        }
+        .nav-tel {
+            display: none;
         }
     }
 }

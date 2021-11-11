@@ -7,7 +7,7 @@
     <div id="intro" ref="intro" class="session pt-0">
       <div class="session-tit">关于创亿</div>
       <div class="container clearfix">
-        <div class="company-pic"><img :src="companyData.img" :alt="companyData.name"></div>
+        <div class="company-pic"><img class="img-full" :src="companyData.img" :alt="companyData.name"></div>
         <div class="company-intro">{{ companyData.introduce }}</div>
       </div>
     </div>
@@ -32,21 +32,15 @@
               </div>
               <p>{{ item.name }}</p>
             </li>
-            <li>
+            <!-- <li v-for="item in companyData.honorImgs" :key="item.id">
               <div class="box">
-                <div class="honor-img img-scale"><img class="img-full" src="http://www.chuangyisy.cn/uploads/201910/5daaeddbdec5d.jpg" alt=""></div>
+                <div class="honor-img img-scale"><img class="img-full" :src="item.url" alt=""></div>
               </div>
-              <p>深圳市电子商会会员单位</p>
-            </li>
+              <p>{{ item.name }}</p>
+            </li> -->
             <!-- <li>
               <div class="box">
-                <div class="honor-img"><img src="http://www.chuangyisy.cn/uploads/201910/5daaeddc916bb.jpg" alt=""></div>
-              </div>
-              <p>深圳市电子商会会员单位</p>
-            </li>
-            <li>
-              <div class="box">
-                <div class="honor-img"><img src="@/assets/img/a.jpg" alt=""></div>
+                <div class="honor-img img-scale"><img class="img-full" src="http://www.chuangyisy.cn/uploads/201910/5daaeddbdec5d.jpg" alt=""></div>
               </div>
               <p>深圳市电子商会会员单位</p>
             </li> -->
@@ -64,18 +58,6 @@
             <li v-for="item in companyData.envImgs" :key="item.id" class="img-scale">
               <div class="img-item" :style="`background-image: url('${ item.url }')`"></div>
             </li>
-            <!-- <li>
-              <div class="img-item" style="background-image: url('http://www.chuangyisy.cn/uploads/201910/5daaeb6781551.jpg')"></div>
-            </li>
-            <li>
-              <div class="img-item" style="background-image: url('http://www.chuangyisy.cn/uploads/201910/5daaeafc03a53.jpg')"></div>
-            </li>
-            <li>
-              <div class="img-item" style="background-image: url('http://www.chuangyisy.cn/uploads/201910/5daaeb6781551.jpg')"></div>
-            </li>
-            <li>
-              <div class="img-item" style="background-image: url('http://www.chuangyisy.cn/uploads/201910/5daaeafc03a53.jpg')"></div>
-            </li> -->
           </ul>
         </div>
       </div>
@@ -174,17 +156,19 @@ export default Vue.extend({
   word-wrap: break-word;
 }
 .company-honor {
+  width: 100%;
   > ul {
     > li {
       float: left;
-      width: 18%;
-      margin-right: 2.5%;
+      width: 17.6%;
+      margin-right: 1.2%;
+      margin-left: 1.2%;
       cursor: pointer;
       box-sizing: border-box;
       margin-bottom: 1rem;
-      &:nth-child(5n) {
-        margin-right: 0;
-      }
+      // &:nth-child(5n) {
+      //   margin-right: 0;
+      // }
       .box {
         display: table;
         border: 1px solid $borderColor2;
@@ -207,6 +191,22 @@ export default Vue.extend({
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+    }
+  }
+  @media (max-width: $largeScreen) {
+    > ul {
+      > li {
+        width: 23%;
+        margin-right: 1%;
+        margin-left: 1%;
+      }
+    }
+  }
+  @media (max-width: $middleScreen) {
+    > ul {
+      > li {
+        width: 31.33%;
       }
     }
   }

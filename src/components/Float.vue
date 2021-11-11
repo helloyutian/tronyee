@@ -156,5 +156,8 @@ export default Vue.extend({
             }
         }
     }
+    @media (max-width: $middleScreen) {
+        display: none;
+    }
 }
 </style>

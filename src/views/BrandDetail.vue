@@ -38,7 +38,7 @@ import { getOssInfo } from '@/utils/apis';
 import Vue from 'vue';
 
 export default Vue.extend({
-    name: 'NewsDetail',
+    name: 'BrandDetail',
     data() {
         return {
             downloadList: [],
@@ -63,7 +63,6 @@ export default Vue.extend({
                 ...this.queryParam,
                 type: this.type
             })
-            document.title = document.title
             this.downloadList = res.list
             this.total = res.total
         }
