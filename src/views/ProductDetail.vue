@@ -97,7 +97,6 @@ import Vue from 'vue';
 export default Vue.extend({
     name: 'Product',
     data() {
-        
         return {
             productList: [],
             total: 0,
@@ -148,7 +147,7 @@ export default Vue.extend({
         this.initSwiper()
         this.$nextTick(() => {
             // console.log('mounted detail')
-            if (this.type && !this.currentRoute.childrens?.some(item => item.type === this.type )) {
+            if (this.type && !this.currentRoute.childrens?.some((item) => item.type === this.type )) {
                 return this.$router.replace('/404')
             }
             // this.getDownloadInfo()
@@ -159,7 +158,6 @@ export default Vue.extend({
             this.viewerSlide = (this.$refs.viewerSlide as any).swiper
             // this.viewerThum = this.$refs.viewerThum
         },
-        slideChangeStart() {},
         handdleClickThum(i: number) {
             this.selectViewerPic = i
             this.viewerSlide.slideTo(i)

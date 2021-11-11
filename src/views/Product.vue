@@ -94,7 +94,7 @@ export default Vue.extend({
     },
     mounted() {
         this.$nextTick(() => {
-            if (this.type && !this.currentRoute.childrens?.some(item => item.type === this.type )) {
+            if (this.type && !this.currentRoute.childrens?.some((item) => item.type === this.type )) {
                 return this.$router.replace('/404')
             }
             this.getProductList()

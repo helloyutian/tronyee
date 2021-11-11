@@ -93,17 +93,22 @@ export default Vue.extend({
   //   }
   // },
   computed: {
-    ...mapState(['companyData'])
+    ...mapState(['companyData']),
+    type() {
+      return this.$route.params.type
+    }
   },
   watch: {
-    '$route'(val) {
-      this.scrollTo(val.params.type)
+    type(val?: string) {
+      this.scrollTo(val)
     }
   },
   mounted() {
     this.$nextTick(() => {
       const elem = this.$route.params.type
-      elem && this.scrollTo(elem)
+      if (elem) {
+        this.scrollTo(elem)
+      }
     })
   },
   methods: {

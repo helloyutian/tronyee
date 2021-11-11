@@ -58,7 +58,9 @@ export const dateFormate = (date: number|string, format = 'YYYY-MM-DD hh:mm:ss')
 
 // 获取名称
 export const getRouteItemName = (type: string, routeList: RouteChildrenItemType[]) => {
-    if (!routeList) return type;
-    const arr = routeList.filter(item => item.type === type)
+    if (!routeList) {
+        return type;
+    }
+    const arr = routeList.filter((item) => item.type === type)
     return arr[0] ? arr[0].name : ''
 }

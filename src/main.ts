@@ -12,7 +12,7 @@ import '@/assets/font/iconfont.css';
 import 'swiper/dist/css/swiper.css';
 import '@/utils/requestAnimationFrame'
 import { dateFormate, getRouteItemName } from '@/utils'
-import VueAwesomeSwiper  from 'vue-awesome-swiper'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 Vue.config.productionTip = false;
 
