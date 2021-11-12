@@ -21,12 +21,6 @@ export default {
             required: true
         }
     },
-    computed: {
-        imgHeight() {
-            
-            return 0
-        }
-    },
     methods: {
         closePreview() {
             this.$emit('update:isShowPreview', false)
