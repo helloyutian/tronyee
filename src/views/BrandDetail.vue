@@ -4,7 +4,7 @@
         <menu-banner menu-disabled></menu-banner>
         <!-- // 内容 -->
         <div class="container">
-            <div class="local"><span class="iconfont icon-home"></span> 您的位置：<router-link to="/">首页</router-link> → <router-link to="/news">行业动态</router-link> → <router-link to="/news/product">产品百科</router-link></div>
+            <div class="local"><span class="iconfont icon-home"></span> 您的位置：<router-link to="/">首页</router-link> → <router-link to="/brand">品牌专区</router-link></div>
             <!-- 标题 -->
             <h1 class="article-tit">乘风破浪 砥砺前行——记深圳创亿实业惠州巽寮湾2日游</h1>
             <p class="article-time"><span><i class="iconfont icon-time"></i> 2021-09-01</span><span><i class="iconfont icon-View"></i> (80)次浏览</span></p>

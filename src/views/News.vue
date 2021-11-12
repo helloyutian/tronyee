@@ -103,6 +103,11 @@ export default Vue.extend({
             return this.$route.params.type || 'default'
         }
     },
+    watch: {
+        type() {
+            this.getNewsList()
+        }
+    },
     mounted() {
         if (this.type !== 'product') {
             this.getHotList()

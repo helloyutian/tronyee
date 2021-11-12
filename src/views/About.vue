@@ -28,19 +28,22 @@
           <ul class="clearfix">
             <li v-for="item in companyData.honorImgs" :key="item.id">
               <div class="box">
-                <div class="honor-img img-scale"><img class="img-full" :src="item.url" alt=""></div>
+                <!-- <el-image class="honor-img img-scale" fit="contain" :src="item.url" :preview-src-list="honorImgList"></el-image> -->
+                <div class="honor-img img-scale" @click="showPreview(item.url)">
+                  <img class="img-full" :src="item.url" alt="">
+                </div>
               </div>
               <p>{{ item.name }}</p>
             </li>
-            <!-- <li v-for="item in companyData.honorImgs" :key="item.id">
-              <div class="box">
-                <div class="honor-img img-scale"><img class="img-full" :src="item.url" alt=""></div>
-              </div>
-              <p>{{ item.name }}</p>
-            </li> -->
             <!-- <li>
               <div class="box">
-                <div class="honor-img img-scale"><img class="img-full" src="http://www.chuangyisy.cn/uploads/201910/5daaeddbdec5d.jpg" alt=""></div>
+                <div class="honor-img img-scale" @click="showPreview('https://c-ssl.duitang.com/uploads/item/201903/30/20190330192531_jKAKG.jpeg')"><img class="img-full" src="http://www.chuangyisy.cn/uploads/201910/5daaeddbdec5d.jpg" alt=""></div>
+              </div>
+              <p>深圳市电子商会会员单位</p>
+            </li>
+            <li>
+              <div class="box">
+                <div class="honor-img img-scale" @click="showPreview('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic4.zhimg.com%2Fv2-0a569452fd53b9349885f469d89380df_r.jpg%3Fsource%3D1940ef5c&refer=http%3A%2F%2Fpic4.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639300375&t=19764762f753ddfa8448993054bd0c4d')"><img class="img-full" src="http://www.chuangyisy.cn/uploads/201910/5daaeddbdec5d.jpg" alt=""></div>
               </div>
               <p>深圳市电子商会会员单位</p>
             </li> -->
@@ -56,28 +59,40 @@
         <div class="company-envi">
           <ul class="clearfix">
             <li v-for="item in companyData.envImgs" :key="item.id" class="img-scale">
-              <div class="img-item" :style="`background-image: url('${ item.url }')`"></div>
+              <div class="item-box">
+                <span class="img-item" :style="`background-image: url('${ item.url }')`" @click="showPreview(item.url)"></span>
+              </div>
             </li>
           </ul>
         </div>
       </div>
     </div>
+    <!-- 弹框 -->
+    <preview-dialog v-if="isShowPreview" :isShowPreview.sync="isShowPreview" :url="imgUrl" />
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
+
 export default Vue.extend({
   name: 'About',
-  // data() {
-  //   return {
-  //     step: 0
-  //   }
-  // },
+  data() {
+    return {
+      isShowPreview: false,
+      imgUrl: ''
+    }
+  },
   computed: {
     ...mapState(['companyData']),
-    type() {
+    type(): string {
       return this.$route.params.type
+    },
+    honorImgList(): string[] {
+      return this.companyData.honorImgs.map((item: any) => item.url)
+    },
+    envImgList(): string[] {
+      return this.companyData.envImgs.map((item: any) => item.url)
     }
   },
   watch: {
@@ -114,6 +129,10 @@ export default Vue.extend({
         }
       }
       moving()
+    },
+    showPreview(url: string) {
+      this.imgUrl = url
+      this.isShowPreview = true
     }
   }
 })
@@ -217,23 +236,27 @@ export default Vue.extend({
       float: left;
       width: 25%;
       height: 210px;
-      padding: 6px;
       position: relative;
-      box-sizing: border-box;
       cursor: pointer;
-      overflow: hidden;
+      margin-bottom: 12px;
       &:first-child {
         width: 50%;
-        height: 420px;
+        height: 432px;
       }
-      .img-item {
-        display: block;
-        // margin: 10px;
+      .item-box {
         height: 100%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        margin: 0 6px;
+        overflow: hidden;
+        .img-item {
+          display: block;
+          // margin: 10px;
+          height: 100%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+        }
       }
+      
     }
   }
 }

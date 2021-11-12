@@ -74,6 +74,14 @@ const routes: RouteConfig[] = [
     }
   },
   {
+    path: '/brand/:id',
+    name: 'BrandDetail',
+    component: () => import(/* webpackChunkName: "brandDetail" */ '../views/BrandDetail.vue'),
+    meta: {
+      title: '品牌介绍'
+    }
+  },
+  {
     path: '/contact',
     name: 'Contact',
     component: () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue'),

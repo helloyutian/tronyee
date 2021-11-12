@@ -63,7 +63,7 @@
     </div>
     <div ref="aboutElem" class="session about">
         <div class="bg-img">
-            <span class="animated imgScale infinite" :style="`background-image: url('${ companyData.img }')`"></span>
+            <a class="animated imgScale infinite" href="/about" :style="`background-image: url('${ companyData.img }')`"></a>
             <!-- <img src="@/assets/img/a.jpg" alt=""> -->
         </div>
         <div class="about-intro">
@@ -101,10 +101,10 @@
                 <div class="con" @mouseenter.stop="stopAutoPlay('newsSwiper')" @mouseleave.stop="startAutoPlay('newsSwiper')">
                     <swiper ref="newsSwiper" class="exhibition-slide swiper-no-swiping" :options="newsOption">
                         <swiper-slide v-for="item in dynamicLlist" :key="item.cid" class="slide-item">
-                            <img class="img-cover" :src="item.titlePic" alt="xxx">
+                            <router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link>
                             <div class="txt">
                                 <span>{{ $dateFormate(item.created, 'MM-DD') }}</span>
-                                <p>{{ item.title }}</p>
+                                <p><router-link :to="`/news/${ item.type }/${ item.cid }`">{{ item.title }}</router-link></p>
                             </div>
                         </swiper-slide>
                         <div class="swiper-button-prev exhi-prev" slot="button-prev"></div>
@@ -123,21 +123,25 @@
                     <ul>
                         <template v-for="(item, idx) in wikiList">
                             <li v-if="idx === 0" :key="item.cid" class="first-item clearfix">
-                                <div class="pic fl"><img class="img-full" :src="item.titlePic" alt=""></div>
+                                <div class="pic fl"><router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-full" :src="item.titlePic" alt=""></router-link></div>
                                 <div class="txt">
-                                    <h3>{{ item.title }}</h3>
+                                    <h3><router-link :to="`/news/${ item.type }/${ item.cid }`">{{ item.title }}</router-link></h3>
                                     <p class="date">{{ $dateFormate(item.created, 'YYYY-MM-DD') }}</p>
                                     <p class="intro">{{ item.slug }}</p>
                                 </div>
                             </li>
                             <li v-else :key="item.cid" class="item">
-                                <div class="date"><span>16</span>/11</div>
-                                <p>{{ item.title }}</p>
+                                <router-link :to="`/news/${ item.type }/${ item.cid }`">
+                                    <span class="date" v-html="$dateFormate(item.created, '<i>DD</i>/MM')"></span>
+                                    <p>{{ item.title }}</p>
+                                </router-link>
                             </li>
                         </template>
                         <!-- <li class="item">
-                            <div class="date"><span>16</span>/11</div>
-                            <p>是快乐的法律上地方</p>
+                            <router-link to="/news">
+                                <span class="date" v-html="'<i>16</i>/11'"></span>
+                                <p>是快乐的法律上地方</p>
+                            </router-link>
                         </li> -->
                     </ul>
                 </div>
@@ -411,7 +415,7 @@ export default class Home extends Vue {
         width: 46%;
         height: 100%;
         overflow: hidden;
-        > span {
+        > a {
             display: block;
             width: 100%;
             height: 100%;
@@ -419,10 +423,10 @@ export default class Home extends Vue {
             background-size: cover;
             background-position: center;
         }
-        > img {
-            width: 100%;
-            height: 100%;
-        }
+        // > img {
+        //     width: 100%;
+        //     height: 100%;
+        // }
     }
     .about-intro {
         background-color: $blueColor;
@@ -582,6 +586,8 @@ export default class Home extends Vue {
         width: 36%;
         margin-right: 30px;
         float: left;
+        position: relative;
+        z-index: 2;
         .con {
             width: 100%;
             height: 375px;
@@ -604,12 +610,17 @@ export default class Home extends Vue {
                         > p {
                             line-height: 5rem;
                             padding: 0 .5rem;
-                            color: #fff;
                             white-space: nowrap;
                             overflow: hidden;
                             text-overflow: ellipsis;
                             position: relative;
                             z-index: 2;
+                            > a {
+                                color: #fff;
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
                         }
                         > span {
                             float: right;
@@ -727,25 +738,32 @@ export default class Home extends Vue {
                             color: #999;
                             letter-spacing: 1px;
                             padding: 0 2.5em 0 1.5em;
-                            > span {
+                            &::v-deep i {
+                                font-style: normal;
                                 font-size: 1.5rem;
                                 color: #686868;
                             }
                         }
-                        &::after {
-                            content: '→';
-                            position: absolute;
-                            line-height: 3rem;
-                            right: 1em;
-                            top: 0;
+                        > a {
+                            display: block;
+                            &::after {
+                                content: '→';
+                                position: absolute;
+                                line-height: 3rem;
+                                right: 1em;
+                                top: 0;
+                            }
                         }
                         &:hover {
                             background-color: $blueColor;
-                            color: #fff;
                             transition: all ease-in .2s;
+                            color: #fff;
+                            > a {
+                                color: #fff;
+                            }
                             .date {
                                 color: #fff;
-                                > span {
+                                &::v-deep i {
                                     color: #fff;
                                 }
                             }

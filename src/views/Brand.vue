@@ -7,9 +7,9 @@
       <ul class="brand-list clearfix">
         <li v-for="item in brandList" :key="item.id" class="brand-item">
           <div class="brand-img img-scale">
-            <router-link to="/"><img class="img-contain" :src="item.img" alt=""></router-link>
+            <router-link :to="`/brand/${item.id}`"><img class="img-contain" :src="item.img" alt=""></router-link>
           </div>
-          <p><router-link to="/">{{ item.name }}</router-link></p>
+          <p><router-link :to="`/brand/${item.id}`">{{ item.name }}</router-link></p>
         </li>
       </ul>
     </div>

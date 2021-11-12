@@ -13,6 +13,7 @@ import 'swiper/dist/css/swiper.css';
 import '@/utils/requestAnimationFrame'
 import { dateFormate, getRouteItemName } from '@/utils'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import PreviewDialog from '@/components/PreviewDialog.vue'
 
 Vue.config.productionTip = false;
 
@@ -25,6 +26,8 @@ Vue.component('v-float', Float);
 // Vue.component('v-links', Links);
 Vue.component('menu-banner', MenuBanner);
 Vue.component(Pagination.name, Pagination);
+// Vue.component(Image.name, Image);
+Vue.component(PreviewDialog.name, PreviewDialog);
 // 定义全局方法
 Vue.prototype.$getRouteItemName = getRouteItemName
 Vue.prototype.$dateFormate = dateFormate

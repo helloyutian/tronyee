@@ -26,7 +26,7 @@
                         <span v-else>无</span>
                     </p>
                 </div>
-                <router-link class="fr btn-back" to="/"><span class="iconfont icon-aui-icon-back"></span> 返回列表</router-link>
+                <router-link class="fr btn-back" to="/news"><span class="iconfont icon-aui-icon-back"></span> 返回列表</router-link>
             </div>
         </div>
         

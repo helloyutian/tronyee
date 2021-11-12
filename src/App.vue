@@ -91,7 +91,8 @@ export default Vue.extend({
 // -------- 动画 -------
 .img-scale {
   img, .img-item {
-    transform: scale(1);
+    transform-origin: center;
+    transform: scale(1, 1);
     transition: all ease .5s;
   }
   &:hover {
