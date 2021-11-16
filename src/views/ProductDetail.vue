@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <!-- // 栏目标题 -->
-        <menu-banner menu-disabled></menu-banner>
+        <menu-banner :src="require('@/assets/img/cpzx.jpg')" menu-disabled></menu-banner>
         <!-- // 内容 -->
         <div class="container">
             <div class="local"><span class="iconfont icon-home"></span> 您的位置：<router-link to="/">首页</router-link> → <router-link to="/product">产品中心</router-link> → <router-link :to="`/product/${ type }`">{{ $getRouteItemName(type, currentRoute.childrens) }}</router-link></div>
@@ -67,21 +67,9 @@
                 <div class="dtl-tit">相关产品</div>
                 <div class="pro-list">
                     <ul class="clearfix">
-                        <li class="img-scale">
-                            <div class="pic"><router-link to="/"><img class="img-full" src="http://www.chuangyisy.cn/uploads/202004/5e9ea07714e9a.jpg" alt="a"></router-link></div>
-                            <p><router-link to="/">GRM033R61C473KE84D</router-link></p>
-                        </li>
-                        <li class="img-scale">
-                            <div class="pic"><router-link to="/"><img class="img-full" src="http://www.chuangyisy.cn/uploads/202004/5e9ea07714e9a.jpg" alt="a"></router-link></div>
-                            <p><router-link to="/">GRM033R61C473KE84D</router-link></p>
-                        </li>
-                        <li class="img-scale">
-                            <div class="pic"><router-link to="/"><img class="img-full" src="http://www.chuangyisy.cn/uploads/202004/5e9ea07714e9a.jpg" alt="a"></router-link></div>
-                            <p><router-link to="/">GRM033R61C473KE84D</router-link></p>
-                        </li>
-                        <li class="img-scale">
-                            <div class="pic"><router-link to="/"><img class="img-full" src="http://www.chuangyisy.cn/uploads/202004/5e9ea07714e9a.jpg" alt="a"></router-link></div>
-                            <p><router-link to="/">GRM033R61C473KE84D</router-link></p>
+                        <li v-for="item in relativeProList" :key="item.id" class="img-scale">
+                            <div class="pic"><router-link :to="`/product/${ item.type }/${ item.id }`"><img class="img-full" :src="item.img" alt=""></router-link></div>
+                            <p><router-link :to="`/product/${ item.type }/${ item.id }`">{{ item.name }}</router-link></p>
                         </li>
                     </ul>
                 </div>
@@ -93,17 +81,13 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { getProductInfo } from '@/utils/apis';
 
 export default Vue.extend({
     name: 'ProductDetail',
     data() {
         return {
             productList: [],
-            total: 0,
-            queryParam: {
-                pageNum: 1,
-                pageSize: 20
-            },
             picList: [
                 'http://www.chuangyisy.cn/uploads/202004/5e9ea2cdb3b62.jpg',
                 'http://www.chuangyisy.cn/uploads/202004/5e9ea2cdb3b62.jpg',
@@ -129,7 +113,8 @@ export default Vue.extend({
                 prevButton: '.thum-prev',
                 nextButton: '.thum-next',
                 slidesPerView: 4
-            }
+            },
+            relativeProList: []
         }
     },
     computed: {
@@ -143,33 +128,36 @@ export default Vue.extend({
             return this.$store.state.currentRoute
         }
     },
+    watch: {
+        id() {
+            this.getProductList()
+        }
+    },
     mounted() {
         this.initSwiper()
         this.$nextTick(() => {
-            // console.log('mounted detail')
             if (this.type && !this.currentRoute.childrens?.some((item) => item.type === this.type )) {
                 return this.$router.replace('/404')
             }
-            // this.getDownloadInfo()
+            this.getProductList()
         })
     },
     methods: {
         initSwiper() {
             this.viewerSlide = (this.$refs.viewerSlide as any).swiper
-            // this.viewerThum = this.$refs.viewerThum
         },
         handdleClickThum(i: number) {
             this.selectViewerPic = i
             this.viewerSlide.slideTo(i)
-        }
-        // async getDownloadInfo() {
-        //     const res = await getOssInfo({
-        //         ...this.queryParam,
-        //         type: this.type
-        //     })
-        //     this.productList = res.list
-        //     this.total = res.total
-        // }
+        },
+        async getProductList() {
+            const res = await getProductInfo({
+                pageNum: 1,
+                pageSize: 4,
+                type: this.type
+            })
+            this.relativeProList = res.list
+        },
     }
 });
 </script>

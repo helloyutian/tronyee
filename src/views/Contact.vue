@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <!-- // 栏目标题 -->
-    <menu-banner></menu-banner>
+    <menu-banner :src="require('@/assets/img/lxwm.jpg')"></menu-banner>
     <!--------------- 内容 ---------------->
     <div class="container">
       <h1 class="page-tit">联系方式 CONTACT US</h1>

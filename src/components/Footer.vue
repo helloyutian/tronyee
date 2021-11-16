@@ -9,7 +9,7 @@
                     <div class="icon" @mouseenter="isShowCode=true" @mouseleave="isShowCode=false">
                         <i class="iconfont icon-weixin"></i>
                         <transition name="slide-fade">
-                            <div v-if="isShowCode" class="qrcode"><img class="img-full" src="http://www.chuangyisy.cn/uploads/201910/5d9fe9a2ed377.png" alt="微信二维码"></div>
+                            <div v-if="isShowCode" class="qrcode"><img class="img-full" :src="companyData.wechatUrl" alt="微信二维码"></div>
                         </transition>
                     </div>
                     <a class="icon" :href="companyData.weibo" target="_blank"><i class="iconfont icon-xinlangweibo"></i></a>
@@ -25,7 +25,7 @@
                     <p>电话：{{ companyData.phone }}</p>
                     <p>邮箱：{{ companyData.email }}</p>
                     <p class="mb-10">地址：{{ companyData.address }}</p>
-                    <p>©2021 {{ companyData.name }}版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备16056078号-2</a>  <a href="/map">网站地图</a></p>
+                    <p>©2021-2022 {{ companyData.name }}版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备16056078号-2</a>  <a href="/map">网站地图</a></p>
                 </div>
             </div>
         </div>

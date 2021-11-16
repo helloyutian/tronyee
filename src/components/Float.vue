@@ -19,7 +19,7 @@
                 <span class="iconfont icon-weixin"></span>
                 <transition name="left-fade">
                     <div v-if="isShowCode" class="qrcode">
-                        <img class="img-full" src="http://www.chuangyisy.cn/uploads/201910/5d9fe9a2ed377.png" alt="微信二维码">
+                        <img class="img-full" :src="companyData.wechatUrl" alt="微信二维码">
                         <p>关注官方微信</p>
                     </div>
                 </transition>

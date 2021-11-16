@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <!-- // 栏目标题 -->
-    <menu-banner></menu-banner>
+    <menu-banner :src="require('@/assets/img/gywm.jpg')"></menu-banner>
     <!--------------- 内容 ---------------->
     <!-- 关于 -->
     <div id="intro" ref="intro" class="session pt-0">

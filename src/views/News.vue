@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <!-- // 栏目标题 -->
-        <menu-banner></menu-banner>
+        <menu-banner :src="require('@/assets/img/hydt.jpg')"></menu-banner>
         <!-- // 内容 -->
         <div class="container">
             <div v-if="type !== 'product'" class="hot">
@@ -10,7 +10,7 @@
                         <div class="hot-item img-scale">
                             <div class="pic"><router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link></div>
                             <h3><router-link :to="`/news/${ item.type }/${ item.cid }`">{{ item.title }}</router-link></h3>
-                            <p class="date">{{ item.created }}</p>
+                            <p class="date">{{ item.modified }}</p>
                             <p class="desc">{{ item.slug }}</p>
                             <router-link class="link" :to="`/news/${ item.type }/${ item.cid }`">[查看详情+]</router-link>
                         </div>
@@ -41,7 +41,7 @@
                         <div class="pic"><router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link></div>
                         <div class="txt">
                             <h3><router-link :to="`/news/${ item.type }/${ item.cid }`">{{ item.title }}</router-link></h3>
-                            <p class="date"><span class="iconfont icon-time"></span> {{ item.created }}</p>
+                            <p class="date"><span class="iconfont icon-time"></span> {{ item.modified }}</p>
                             <p class="desc">{{ item.slug }}</p>
                             <router-link class="link" :to="`/news/${ item.type }/${ item.cid }`">[查看详情+]</router-link>
                         </div>
@@ -119,7 +119,6 @@ export default Vue.extend({
             const res = await getArticleInfo({
                 pageNum: 1,
                 pageSize: 3,
-                type: 'default'
             })
             this.hotList = res.list
         },

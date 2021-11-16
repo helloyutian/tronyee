@@ -68,7 +68,7 @@
         </div>
         <div class="about-intro">
             <h2>ABOUT US <span>关于创亿</span></h2>
-            <p>深圳创亿实业有限公司多年来一直专注于国内外知名品牌MLCC电容的行销以及物流供应链，主要品牌有：三星(SAMSUNG)、村田（MURATA)、国巨（YAGEO)、华科（WALSIN）、三环（CCTC）等。</p>
+            <p>{{ getAboutContent() }}...</p>
             <div class="about-icon">
                 <ul>
                     <li class="animated" :class="{ fadeInDown: isShowAbout }" style="animation-delay: .2s">
@@ -103,7 +103,7 @@
                         <swiper-slide v-for="item in dynamicLlist" :key="item.cid" class="slide-item">
                             <router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link>
                             <div class="txt">
-                                <span>{{ $dateFormate(item.created, 'MM-DD') }}</span>
+                                <span>{{ $dateFormate(item.modified, 'MM-DD') }}</span>
                                 <p><router-link :to="`/news/${ item.type }/${ item.cid }`">{{ item.title }}</router-link></p>
                             </div>
                         </swiper-slide>
@@ -126,13 +126,13 @@
                                 <div class="pic fl"><router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-full" :src="item.titlePic" alt=""></router-link></div>
                                 <div class="txt">
                                     <h3><router-link :to="`/news/${ item.type }/${ item.cid }`">{{ item.title }}</router-link></h3>
-                                    <p class="date">{{ $dateFormate(item.created, 'YYYY-MM-DD') }}</p>
+                                    <p class="date">{{ $dateFormate(item.modified, 'YYYY-MM-DD') }}</p>
                                     <p class="intro">{{ item.slug }}</p>
                                 </div>
                             </li>
                             <li v-else :key="item.cid" class="item">
                                 <router-link :to="`/news/${ item.type }/${ item.cid }`">
-                                    <span class="date" v-html="$dateFormate(item.created, '<i>DD</i>/MM')"></span>
+                                    <span class="date" v-html="$dateFormate(item.modified, '<i>DD</i>/MM')"></span>
                                     <p>{{ item.title }}</p>
                                 </router-link>
                             </li>
@@ -251,6 +251,12 @@ export default class Home extends Vue {
         })
         // console.log(res)
         this.wikiList = res.list
+    }
+    private getAboutContent() {
+        const txt = this.companyData.introduce || ''
+        const r = txt.indexOf('\r')
+        const n = txt.indexOf('\n')
+        return txt.substr(0, Math.min(r, n, 200))
     }
     // 停止自动播放
     private stopAutoPlay(elem: string) {

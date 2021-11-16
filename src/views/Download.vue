@@ -1,15 +1,15 @@
 <template>
     <div class="wrap">
         <!-- // 栏目标题 -->
-        <menu-banner></menu-banner>
+        <menu-banner :src="require('@/assets/img/zlxz.jpg')"></menu-banner>
         <!-- // 内容 -->
         <div class="container">
             <ul class="download-list clearfix">
                 <li v-for="item in downloadList" :key="item.id" class="dl-item" >
-                    <a :download="item.name" :href="item.url" title="点击下载">
+                    <a :download="item.name" :href="item.url" target="_blank" title="点击下载" @click="handdleClick(item.id)">
                         <span class="icon iconfont icon-xiazai"></span>
                         <h4>{{ item.name }}</h4>
-                        <p class="count">下载次数： 0</p>
+                        <p class="count">下载次数：{{ (item.id * 3) % 11 * 6 + 30 + (clickCount['c' + item.id] || 0) }}</p>
                         <p class="date">更新时间：{{ $dateFormate(item.modifyTime, 'YYYY-MM-DD') }}</p>
                     </a>
                 </li>
@@ -36,6 +36,7 @@ export default Vue.extend({
     name: 'Download',
     data() {
         return {
+            clickCount: {} as ObjectType,
             downloadList: [],
             total: 0,
             queryParam: {
@@ -60,6 +61,9 @@ export default Vue.extend({
             })
             this.downloadList = res.list
             this.total = res.total
+        },
+        handdleClick(id: number) {
+            this.$set(this.clickCount, 'c' + id, 1)
         }
     }
 });

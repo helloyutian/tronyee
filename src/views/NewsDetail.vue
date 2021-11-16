@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <!-- // 栏目标题 -->
-        <menu-banner menu-disabled></menu-banner>
+        <menu-banner :src="require('@/assets/img/hydt.jpg')" menu-disabled></menu-banner>
         <!-- // 内容 -->
         <div class="container">
             <div class="local"><span class="iconfont icon-home"></span> 您的位置：<router-link to="/">首页</router-link> → <router-link to="/news">行业动态</router-link> → <router-link to="/news/product">产品百科</router-link></div>
@@ -14,7 +14,7 @@
                 <p>两天的团建之旅不仅增进了员工之间的互动交流，更让我们懂得了承担的价值，得到了责任的历练，增强了大家对团队力量的认识，感受到了沟通、合作、凝聚力、相互激励以及遵从团体规范的重要性，让创亿人体会到了“乘风破浪 砥砺前行”的责任心和使命感！</p>
             </div>
             <div class="detail-pager clearfix">
-                <div class="fl">
+                <!-- <div class="fl">
                     <p class="nav-link">
                         上一篇：
                         <router-link v-if="true" to="/">创辉煌 创未来——记深圳创亿实业南澳拓展之旅</router-link>
@@ -25,7 +25,7 @@
                         <router-link v-if="false" to="/">创辉煌 创未来——记深圳创亿实业南澳拓展之旅</router-link>
                         <span v-else>无</span>
                     </p>
-                </div>
+                </div> -->
                 <router-link class="fr btn-back" to="/news"><span class="iconfont icon-aui-icon-back"></span> 返回列表</router-link>
             </div>
         </div>

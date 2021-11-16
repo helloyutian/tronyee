@@ -1,5 +1,5 @@
 <template>
-    <div class="banner" :style="`background-image: url('http://www.chuangyisy.cn/uploads/201812/5c1cb588ba18f.jpg')`">
+    <div class="banner" :style="`background-image: url('${ src }')`">
         <h1>{{ currentRoute.name }}</h1>
         <div v-if="!menuDisabled && currentRoute.childrens" class="nav-list">
             <div class="container">
@@ -24,7 +24,11 @@ import { mapState } from 'vuex'
 export default Vue.extend({
     name: 'MenuBanner',
     props: {
-        menuDisabled: Boolean
+        menuDisabled: Boolean,
+        src: {
+            type: String,
+            required: true
+        }
     },
     computed: {
         ...mapState(['currentRoute'])

@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <!-- // 栏目标题 -->
-        <menu-banner></menu-banner>
+        <menu-banner :src="require('@/assets/img/cpzx.jpg')"></menu-banner>
         <!-- // 内容 -->
         <div class="container">
             <ul class="product-list clearfix">
