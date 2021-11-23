@@ -1,4 +1,6 @@
 declare module 'vue-awesome-swiper';
+declare module 'editor.md';
+declare module 'marked';
 declare module '*.vue' {
   import Vue from 'vue';
   export default Vue;

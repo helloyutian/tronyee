@@ -1,4 +1,5 @@
 module.exports = {
+    publicPath: '/tronyee/dist/',
     devServer: {
         port: 9090,
         proxy: {

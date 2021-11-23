@@ -4,7 +4,7 @@
         <menu-banner :src="require('@/assets/img/hydt.jpg')"></menu-banner>
         <!-- // 内容 -->
         <div class="container">
-            <div v-if="type !== 'product'" class="hot">
+            <!-- <div v-if="type !== 'product'" class="hot">
                 <ul class="clearfix">
                     <li v-for="item in hotList" :key="item.cid">
                         <div class="hot-item img-scale">
@@ -15,55 +15,19 @@
                             <router-link class="link" :to="`/news/${ item.type }/${ item.cid }`">[查看详情+]</router-link>
                         </div>
                     </li>
-                    <!-- <li>
-                        <div class="hot-item img-scale">
-                            <div class="pic"><router-link to="/"><img class="img-cover" src="http://www.chuangyisy.cn/uploads/202109/612f48823d9ea.jpg" alt=""></router-link></div>
-                            <h3><router-link to="/">创亿实业：贴片电容怎么看大小？</router-link></h3>
-                            <p class="date">2019-10-08</p>
-                            <p class="desc">贴片电容很多由于体积所限，不能标注其容量，所以一般都是在贴片生产时的整盘上有标注。如果是单个的贴片电容，要用电容测试仪测出它的容量。如果是同一个厂标的话，一般来说颜色深的容量比颜色浅的要大，棕灰>浅紫>灰白。当然最好的方法是用热风枪吹下来，等...</p>
-                            <router-link class="link" to="/">[查看详情+]</router-link>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="hot-item img-scale">
-                            <div class="pic"><router-link to="/"><img class="img-cover" src="http://www.chuangyisy.cn/uploads/202109/612f48823d9ea.jpg" alt=""></router-link></div>
-                            <h3><router-link to="/">创亿实业：贴片电容怎么看大小？</router-link></h3>
-                            <p class="date">2019-10-08</p>
-                            <p class="desc">贴片电容很多由于体积所限，不能标注其容量，所以一般都是在贴片生产时的整盘上有标注。如果是单个的贴片电容，要用电容测试仪测出它的容量。如果是同一个厂标的话，一般来说颜色深的容量比颜色浅的要大，棕灰>浅紫>灰白。当然最好的方法是用热风枪吹下来，等...</p>
-                            <router-link class="link" to="/">[查看详情+]</router-link>
-                        </div>
-                    </li> -->
                 </ul>
-            </div>
+            </div> -->
             <div class="list">
                 <ul>
                     <li v-for="item in newsList" :key="item.cid" class="clearfix img-scale">
-                        <div class="pic"><router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link></div>
+                        <div class="pic"><router-link :to="`/news/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link></div>
                         <div class="txt">
-                            <h3><router-link :to="`/news/${ item.type }/${ item.cid }`">{{ item.title }}</router-link></h3>
+                            <h3><router-link :to="`/news/${ item.cid }`">{{ item.title }}</router-link></h3>
                             <p class="date"><span class="iconfont icon-time"></span> {{ item.modified }}</p>
                             <p class="desc">{{ item.slug }}</p>
-                            <router-link class="link" :to="`/news/${ item.type }/${ item.cid }`">[查看详情+]</router-link>
+                            <router-link class="link" :to="`/news/${ item.cid }`">[查看详情+]</router-link>
                         </div>
                     </li>
-                    <!-- <li class="clearfix img-scale">
-                        <div class="pic"><router-link to="/"><img class="img-cover" src="http://www.chuangyisy.cn/uploads/202011/5fb2537e71132.jpg" alt=""></router-link></div>
-                        <div class="txt">
-                            <h3><router-link to="/">创亿实业：贴片电容怎么看大小？</router-link></h3>
-                            <p class="date"><span class="iconfont icon-time"></span> 2019-10-08</p>
-                            <p class="desc">贴片电容很多由于体积所限，不能标注其容量，所以一般都是在贴片生产时的整盘上有标注。如果是单个的贴片电容，要用电容测试仪测出它的容量。如果是同一个厂标的话，一般来说颜色深的容量比颜色浅的要大，棕灰>浅紫>灰白。当然最好的方法是用热风枪吹下来，等...</p>
-                            <router-link class="link" to="/">[查看详情+]</router-link>
-                        </div>
-                    </li>
-                    <li class="clearfix img-scale">
-                        <div class="pic"><router-link to="/"><img class="img-cover" src="http://www.chuangyisy.cn/uploads/202006/5ee196c767938.jpg" alt=""></router-link></div>
-                        <div class="txt">
-                            <h3><router-link to="/">创亿实业：贴片电容怎么看大小？</router-link></h3>
-                            <p class="date"><span class="iconfont icon-time"></span> 2019-10-08</p>
-                            <p class="desc">贴片电容很多由于体积所限，不能标注其容量，所以一般都是在贴片生产时的整盘上有标注。如果是单个的贴片电容，要用电容测试仪测出它的容量。如果是同一个厂标的话，一般来说颜色深的容量比颜色浅的要大，棕灰>浅紫>灰白。当然最好的方法是用热风枪吹下来，等...</p>
-                            <router-link class="link" to="/">[查看详情+]</router-link>
-                        </div>
-                    </li> -->
                 </ul>
             </div>
             <!-- // 分页  -->
@@ -74,7 +38,7 @@
                 :current-page.sync="queryParam.pageNum"
                 :page-size="queryParam.pageSize"
                 :total="total"
-                @current-change="getNewsList(type)"
+                @current-change="getNewsList()"
             ></el-pagination>
         </div>
     </div>
@@ -99,33 +63,33 @@ export default Vue.extend({
         }
     },
     computed: {
-        type() {
-            return this.$route.params.type || 'default'
-        }
+        // type() {
+        //     return this.$route.params.type || 'default'
+        // }
     },
     watch: {
-        type() {
-            this.getNewsList()
-        }
+        // type() {
+        //     this.getNewsList()
+        // }
     },
     mounted() {
-        if (this.type !== 'product') {
-            this.getHotList()
-        }
+        // if (this.type !== 'product') {
+        //     this.getHotList()
+        // }
         this.getNewsList()
     },
     methods: {
-        async getHotList() {
-            const res = await getArticleInfo({
-                pageNum: 1,
-                pageSize: 3,
-            })
-            this.hotList = res.list
-        },
+        // async getHotList() {
+        //     const res = await getArticleInfo({
+        //         pageNum: 1,
+        //         pageSize: 3,
+        //     })
+        //     this.hotList = res.list
+        // },
         async getNewsList() {
             const res = await getArticleInfo({
                 ...this.queryParam,
-                type: this.type
+                // type: this.type
             })
             this.newsList = res.list
             this.total = res.total

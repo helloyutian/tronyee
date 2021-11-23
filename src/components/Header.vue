@@ -3,7 +3,7 @@
         <div class="container">
             <div class="brand">
                 <router-link to="/">
-                    <img class="img-full" src="x.png" alt="logo">
+                    <img class="img-full" src="@/assets/img/logo.jpg" alt="logo">
                 </router-link>
             </div>
             <div class="navlist">
@@ -85,7 +85,10 @@ export default class VHeader extends Vue {
         position: absolute;
         width: 230px;
         height: 75px;
-        background-color: #ccc;
+        // background-color: #ccc;
+        // background-image: url('../../../assets/img/logo3.jpg');
+        // background-repeat: no-repeat;
+        // background-position: left center;
         top: 7px;
         left: 5px;
         display: table;

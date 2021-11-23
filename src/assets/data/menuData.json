@@ -1,10 +1,10 @@
 [
   { "name": "首页", "href": "/" },
   {
-    "name": "关于创亿",
+    "name": "关我们",
     "href": "/about",
     "childrens": [
-      { "name": "创亿简介", "href": "/about/intro", "type": "intro" },
+      { "name": "公司简介", "href": "/about/intro", "type": "intro" },
       { "name": "企业文化", "href": "/about/culture", "type": "culture" },
       { "name": "荣誉资质", "href": "/about/honor", "type": "honor" },
       { "name": "公司环境", "href": "/about/environment", "type": "environment" }
@@ -28,11 +28,7 @@
   },
   {
     "name": "行业动态",
-    "href": "/news",
-    "childrens": [
-      { "name": "创亿动态", "href": "/news/dynamic", "type": "dynamic" },
-      { "name": "产品百科", "href": "/news/product", "type": "product" }
-    ]
+    "href": "/news"
   },
   { "name": "品牌专区", "href": "/brand" },
   { "name": "联系我们", "href": "/contact" }

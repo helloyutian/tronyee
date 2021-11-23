@@ -11,7 +11,7 @@ const routes: RouteConfig[] = [
     name: 'Home',
     component: Home,
     meta: {
-      title: '首页 - 创亿实业'
+      title: '首页 - 深圳市泰成兴电子科技有限公司'
     }
   },
   {
@@ -22,7 +22,7 @@ const routes: RouteConfig[] = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     meta: {
-      title: '关于创亿'
+      title: '关于我们'
     }
   },
   {
@@ -50,7 +50,7 @@ const routes: RouteConfig[] = [
     }
   },
   {
-    path: '/news/:type?',
+    path: '/news',
     name: 'News',
     component: () => import(/* webpackChunkName: "news" */ '../views/News.vue'),
     meta: {
@@ -58,7 +58,7 @@ const routes: RouteConfig[] = [
     }
   },
   {
-    path: '/news/:type/:id',
+    path: '/news/:id',
     name: 'NewsDetail',
     component: () => import(/* webpackChunkName: "newsDetail" */ '../views/NewsDetail.vue'),
     meta: {
@@ -92,7 +92,7 @@ const routes: RouteConfig[] = [
   {
     path: '*',
     name: 'Error',
-    component: () => import('../views/Error.vue'),
+    component: Error,
     meta: {
       title: '错误页'
     }

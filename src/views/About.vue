@@ -5,7 +5,7 @@
     <!--------------- 内容 ---------------->
     <!-- 关于 -->
     <div id="intro" ref="intro" class="session pt-0">
-      <div class="session-tit">关于创亿</div>
+      <div class="session-tit">关于我们</div>
       <div class="container clearfix">
         <div class="company-pic"><img class="img-full" :src="companyData.img" :alt="companyData.name"></div>
         <div class="company-intro">{{ companyData.introduce }}</div>

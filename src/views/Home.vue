@@ -15,7 +15,7 @@
                     <p>PRODUCTS AND SERVICES</p>
                     <h2>产品与服务</h2>
                 </div>
-                <p class="intro">深圳创亿实业有限公司一直专注于国内外知名品牌MLCC电容的行销以及物流供应链，主要品牌有：三星(SAMSUNG)、村田（MURATA)、国巨（YAGEO)、华科（WALSIN）、三环（CCTC）等。目前公司主要以国内贸易为主，现货形式销售，常备大量现货，拥有完整的型号库存。</p>
+                <p class="intro">深圳市泰成兴电子科技有限公司一直专注于国内外知名品牌MLCC电容的行销以及物流供应链，主要品牌有：三星(SAMSUNG)、村田（MURATA)、国巨（YAGEO)、华科（WALSIN）、三环（CCTC）等。目前公司主要以国内贸易为主，现货形式销售，常备大量现货，拥有完整的型号库存。</p>
             </div>
         </div>
         <div ref="productElem" class="container">
@@ -67,7 +67,7 @@
             <!-- <img src="@/assets/img/a.jpg" alt=""> -->
         </div>
         <div class="about-intro">
-            <h2>ABOUT US <span>关于创亿</span></h2>
+            <h2>ABOUT US <span>关于我们</span></h2>
             <p>{{ getAboutContent() }}...</p>
             <div class="about-icon">
                 <ul>
@@ -92,19 +92,24 @@
     </div>
     <div ref="newsElem" class="session news">
         <div class="container clearfix">
+            <div class="tit">
+                <router-link class="more fr" to="/news"><span>M</span>ORE+</router-link>
+                <p>Exhibition</p>
+                <h2>泰成兴动态</h2>
+            </div>
             <div class="exhibition animated" :class="{ fadeInLeftBig: isShowNews }">
-                <div class="tit">
+                <!-- <div class="tit">
                     <router-link class="more fr" to="/news/dynamic"><span>M</span>ORE+</router-link>
                     <p>Exhibition</p>
-                    <h2>创亿动态</h2>
-                </div>
+                    <h2>行业动态</h2>
+                </div> -->
                 <div class="con" @mouseenter.stop="stopAutoPlay('newsSwiper')" @mouseleave.stop="startAutoPlay('newsSwiper')">
                     <swiper ref="newsSwiper" class="exhibition-slide swiper-no-swiping" :options="newsOption">
                         <swiper-slide v-for="item in dynamicLlist" :key="item.cid" class="slide-item">
-                            <router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link>
+                            <router-link :to="`/news/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link>
                             <div class="txt">
                                 <span>{{ $dateFormate(item.modified, 'MM-DD') }}</span>
-                                <p><router-link :to="`/news/${ item.type }/${ item.cid }`">{{ item.title }}</router-link></p>
+                                <p><router-link :to="`/news/${ item.cid }`">{{ item.title }}</router-link></p>
                             </div>
                         </swiper-slide>
                         <div class="swiper-button-prev exhi-prev" slot="button-prev"></div>
@@ -114,18 +119,13 @@
             </div>
             <!-- 产品百科 -->
             <div class="wiki animated" :class="{ fadeInRightBig: isShowNews }">
-                <div class="tit">
-                    <router-link class="more fr" to="/news/product"><span>M</span>ORE+</router-link>
-                    <p>Brand Dynamics</p>
-                    <h2>产品百科</h2>
-                </div>
                 <div class="con">
                     <ul>
                         <template v-for="(item, idx) in wikiList">
                             <li v-if="idx === 0" :key="item.cid" class="first-item clearfix">
-                                <div class="pic fl"><router-link :to="`/news/${ item.type }/${ item.cid }`"><img class="img-full" :src="item.titlePic" alt=""></router-link></div>
+                                <div class="pic fl"><router-link :to="`/news/${ item.cid }`"><img class="img-full" :src="item.titlePic" alt=""></router-link></div>
                                 <div class="txt">
-                                    <h3><router-link :to="`/news/${ item.type }/${ item.cid }`">{{ item.title }}</router-link></h3>
+                                    <h3><router-link :to="`/news/${ item.cid }`">{{ item.title }}</router-link></h3>
                                     <p class="date">{{ $dateFormate(item.modified, 'YYYY-MM-DD') }}</p>
                                     <p class="intro">{{ item.slug }}</p>
                                 </div>
@@ -194,7 +194,7 @@ export default class Home extends Vue {
     }
     private mounted() {
         this.getBannnerList()
-        this.getDynamicLlist()
+        // this.getDynamicLlist()
         this.getWikiLlist()
         this.$nextTick(() => {
             document.addEventListener('scroll', this.handdleScroll);
@@ -232,25 +232,17 @@ export default class Home extends Vue {
         })
         this.bannerList = res.list
     }
-    // 获取行业动态
-    private async getDynamicLlist() {
-        const res = await getArticleInfo({
-            pageNum: 1,
-            pageSize: 4,
-            type: 'dynamic'
-        })
-        // console.log(res)
-        this.dynamicLlist = res.list
-    }
-    // 获取产品百科
+
+    // 获取文章列表
     private async getWikiLlist() {
         const res = await getArticleInfo({
             pageNum: 1,
-            pageSize: 4,
-            type: 'product'
+            pageSize: 7,
+            // type: 'product'
         })
         // console.log(res)
         this.wikiList = res.list
+        this.dynamicLlist = this.wikiList.splice(0, 2)
     }
     private getAboutContent() {
         const txt = this.companyData.introduce || ''

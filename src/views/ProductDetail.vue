@@ -10,39 +10,41 @@
                 <!-- 轮播图 -->
                 <div class="viewer fl">
                     <swiper class="viewer-slide" ref="viewerSlide" :options="viewerSlideOpt">
-                        <swiper-slide v-for="(item, idx) in picList" :key="idx"><img class="img-full" :src="item" alt=""></swiper-slide>
+                        <swiper-slide v-for="(item, idx) in product.picList" :key="idx"><img class="img-full" :src="item" alt=""></swiper-slide>
                         <!-- <swiper-slide><img class="img-full" src="http://www.chuangyisy.cn/uploads/202004/5e9ea2cdb3b62.jpg" alt=""></swiper-slide> -->
                         <div class="swiper-button-prev swiper-button-white viewer-prev" slot="button-prev"></div>
                         <div class="swiper-button-next swiper-button-white viewer-next" slot="button-next"></div>
                     </swiper>
                     <swiper class="viewer-thum" ref="viewerThum" :options="viewerThumOpt">
-                        <swiper-slide v-for="(item, idx) in picList" :key="idx" class="thum-item">
+                        <swiper-slide v-for="(item, idx) in product.picList" :key="idx" class="thum-item">
                             <div class="thum-img" :class="{ active: selectViewerPic === idx }" @click="handdleClickThum(idx)"><img :src="item" alt=""></div>
                         </swiper-slide>
-                        <div v-if="picList.length > 4" class="swiper-button-prev swiper-button-white thum-prev" slot="button-prev"></div>
-                        <div v-if="picList.length > 4" class="swiper-button-next swiper-button-white thum-next" slot="button-next"></div>
+                        <template v-if="product.picList.length > 4">
+                            <div class="swiper-button-prev swiper-button-white thum-prev" slot="button-prev"></div>
+                            <div class="swiper-button-next swiper-button-white thum-next" slot="button-next"></div>
+                        </template>
                     </swiper>
                     <!-- <div class="pic"><img class="img-full" src="http://www.chuangyisy.cn/uploads/202004/5e9ea2cdb3b62.jpg" alt=""></div> -->
                     <!-- <div>swiper</div> -->
                 </div>
                 <!-- 属性 -->
                 <div class="pro-attr">
-                    <h1>CC0805KRX7R9BB102</h1>
+                    <h1>{{ product.name }}</h1>
                     <div class="dtl">
-                        <p>产品类别：村田贴片电容</p>
-                        <p>产品描述：</p>
-                        <p>产品型号：GRM31CR61A476ME15L</p>
-                        <p>封装尺寸：1206</p>
-                        <p>容 值：2.2UF</p>
-                        <p>材 质：X7R</p>
-                        <p>电 压：50V</p>
-                        <p>精 度：±10%</p>
-                        <p>厚 度：0.65T</p>
-                        <p>耐高温：-55℃～+125℃</p>
+                        <p>产品类别：{{ $getRouteItemName(product.type, currentRoute.childrens) }}</p>
+                        <p>产品描述：{{ product.description }}</p>
+                        <p>产品型号：{{ product.model }}</p>
+                        <p>封装尺寸：{{ product.size }}</p>
+                        <p>容 值：{{ product.volume }}</p>
+                        <p>材 质：{{ product.material }}</p>
+                        <p>电 压：{{ product.voltage }}</p>
+                        <p>精 度：{{ product.precision }}</p>
+                        <p>厚 度：{{ product.thickness }}</p>
+                        <p>耐高温：{{ product.temperature }}</p>
                     </div>
-                    <div class="tel"><span class="iconfont icon-f-tel"></span><span class="name">服务热线：</span>0755-83257779</div>
+                    <div class="tel"><span class="iconfont icon-f-tel"></span><span class="name">服务热线：</span>{{ companyData.phone }}</div>
                     <div class="btns">
-                        <a class="online" href="/product"><span class="iconfont icon-qq1"></span> 在线咨询</a>
+                        <a class="online" :href="`tencent://message/?Site=tianshigame.com&uin=${ companyData.qq }&Menu=yes`"><span class="iconfont icon-qq1"></span> 在线咨询</a>
                         <a class="back" href="/product"><span class="iconfont icon-aui-icon-back"></span> 返回列表</a>
                     </div>
                 </div>
@@ -51,15 +53,7 @@
             <div class="session">
                 <div class="dtl-tit">产品说明</div>
                 <div class="dtl-con">
-                    <p>&nbsp;</p>
-                    <p>特性： </p>
-                    <p>1．外形尺寸小。 </p>
-                    <p>2．闭合电路，无交互干扰，适合于高密度安装。 </p>
-                    <p>3．无方向性，规范化的自动贴片安装外形。 </p>
-                    <p>4．可焊性和耐焊性优，适合于流焊和再流焊。</p>
-                    <p>&nbsp;</p>
-                    <p>应用： </p>
-                    <p>被广泛用于笔记本电脑数位电视，数位录放影机，列表机，硬式磁碟机，个人电脑和其安一般消费性及电脑主品上输入、输出线路之杂讯消除。</p>
+                    {{ product.introduce }}
                 </div>
             </div>
             <!-- 相关产品 -->
@@ -81,21 +75,15 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { getProductInfo } from '@/utils/apis';
+import { getProductGet, getProductInfo } from '@/utils/apis';
 
 export default Vue.extend({
     name: 'ProductDetail',
     data() {
         return {
-            productList: [],
-            picList: [
-                'http://www.chuangyisy.cn/uploads/202004/5e9ea2cdb3b62.jpg',
-                'http://www.chuangyisy.cn/uploads/202004/5e9ea2cdb3b62.jpg',
-                'http://www.chuangyisy.cn/uploads/202004/5e9ea16d79fd9.jpg',
-                'http://www.chuangyisy.cn/uploads/202004/5e9ea2cdb3b62.jpg',
-                'http://www.chuangyisy.cn/uploads/202004/5e9ea2cdb3b62.jpg',
-                'http://www.chuangyisy.cn/uploads/202004/5e9ea16d79fd9.jpg'
-            ],
+            product: {
+                picList: []
+            },
             viewerSlide: null as any,
             selectViewerPic: 0,
             viewerSlideOpt: {
@@ -124,6 +112,9 @@ export default Vue.extend({
         id() {
             return this.$route.params.id
         },
+        companyData() {
+            return this.$store.state.companyData
+        },
         currentRoute(): RouteItemType {
             return this.$store.state.currentRoute
         }
@@ -131,6 +122,7 @@ export default Vue.extend({
     watch: {
         id() {
             this.getProductList()
+            this.getProductDetail()
         }
     },
     mounted() {
@@ -141,6 +133,7 @@ export default Vue.extend({
             }
             this.getProductList()
         })
+        this.getProductDetail()
     },
     methods: {
         initSwiper() {
@@ -158,6 +151,13 @@ export default Vue.extend({
             })
             this.relativeProList = res.list
         },
+        async getProductDetail() {
+            const res = await getProductGet({
+                id: this.id
+            })
+            this.product = res
+            this.product.picList = res.img.split(',')
+        }
     }
 });
 </script>
@@ -221,7 +221,7 @@ export default Vue.extend({
     > h1 {
         font-size: 1.6rem;
         line-height: 1.2;
-        padding-top: 1rem;
+        padding-top: .5rem;
         padding-bottom: 1rem;
         font-weight: normal;
         border-bottom: 1px solid $borderColor2;
@@ -237,8 +237,8 @@ export default Vue.extend({
     .tel {
         font-size: 1.2rem;
         color: $blueColor;
-        margin-top: 1rem;
-        margin-bottom: 2.5rem;
+        margin-top: .5rem;
+        margin-bottom: 2rem;
         > .iconfont {
             font-size: 2rem;
         }
@@ -313,6 +313,7 @@ export default Vue.extend({
 .dtl-con {
     font-size: .92rem;
     line-height: 1.5;
+    white-space: pre-wrap;
     > p {
         margin-bottom: .1em;
     }

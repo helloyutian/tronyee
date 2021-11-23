@@ -3,26 +3,22 @@
         <!-- // 栏目标题 -->
         <menu-banner :src="require('@/assets/img/hydt.jpg')" menu-disabled></menu-banner>
         <!-- // 内容 -->
-        <div class="container">
-            <div class="local"><span class="iconfont icon-home"></span> 您的位置：<router-link to="/">首页</router-link> → <router-link to="/news">行业动态</router-link> → <router-link to="/news/product">产品百科</router-link></div>
+        <div class="container editormd-preview">
+            <div class="local"><span class="iconfont icon-home"></span> 您的位置：<router-link to="/">首页</router-link> → <router-link to="/news">行业动态</router-link></div>
             <!-- 标题 -->
-            <h1 class="article-tit">乘风破浪 砥砺前行——记深圳创亿实业惠州巽寮湾2日游</h1>
-            <p class="article-time"><span><i class="iconfont icon-time"></i> 2021-09-01</span><span><i class="iconfont icon-View"></i> (80)次浏览</span></p>
-            <div class="article-main">
-                <p>伴随公司规模不断发展壮大，为培养员工团队协作精神、增强企业凝聚力、舒缓工作压力，在结束春夏紧张忙碌的工作后，8月29-30日，创亿实业深圳区部分员工开展了以一次以“乘风破浪 砥砺前行”为主题的惠州巽寮湾激情团建之旅，燃烧每位创亿伙伴们的激情。</p>
-                <p><img src="http://www.chuangyisy.cn/uploads/202109/612f48823d9ea.jpg" alt=""></p>
-                <p>两天的团建之旅不仅增进了员工之间的互动交流，更让我们懂得了承担的价值，得到了责任的历练，增强了大家对团队力量的认识，感受到了沟通、合作、凝聚力、相互激励以及遵从团体规范的重要性，让创亿人体会到了“乘风破浪 砥砺前行”的责任心和使命感！</p>
-            </div>
+            <h1 class="article-tit">{{ newsDetail.title }}</h1>
+            <p class="article-time"><span><i class="iconfont icon-time"></i> {{ $dateFormate(newsDetail.modified, 'YYYY-MM-DD') }}</span><span><i class="iconfont icon-View"></i> ({{ newsDetail.hits }})次浏览</span></p>
+            <div class="article-main editormd-preview-container" v-html="newsDetail.content"></div>
             <div class="detail-pager clearfix">
                 <!-- <div class="fl">
                     <p class="nav-link">
                         上一篇：
-                        <router-link v-if="true" to="/">创辉煌 创未来——记深圳创亿实业南澳拓展之旅</router-link>
+                        <router-link v-if="true" to="/">创辉煌 创未来——记南澳拓展之旅</router-link>
                         <span v-else>无</span>
                     </p>
                     <p class="nav-link">
                         下一篇：
-                        <router-link v-if="false" to="/">创辉煌 创未来——记深圳创亿实业南澳拓展之旅</router-link>
+                        <router-link v-if="false" to="/">创辉煌 创未来——记南澳拓展之旅</router-link>
                         <span v-else>无</span>
                     </p>
                 </div> -->
@@ -34,38 +30,41 @@
 </template>
 
 <script lang="ts">
-import { getOssInfo } from '@/utils/apis';
+import { getArticleGet } from '@/utils/apis';
 import Vue from 'vue';
+// import EditorMD from 'editor.md'
+// import 'editor.md/css/editormd.preview.min.css'
+import '@/assets/scss/editormd.preview.min.css'
+import { marked } from 'marked'
 
 export default Vue.extend({
     name: 'NewsDetail',
     data() {
         return {
-            downloadList: [],
-            total: 0,
-            queryParam: {
-                pageNum: 1,
-                pageSize: 20
+            newsDetail: {
+                content: ''
             }
         }
     },
     computed: {
-        type() {
-            return this.$route.params.type
+        id() {
+            return this.$route.params.id
         }
     },
     mounted() {
-        this.getDownloadInfo()
+        this.getNewsDetail()
     },
     methods: {
-        async getDownloadInfo() {
-            const res = await getOssInfo({
-                ...this.queryParam,
-                type: this.type
+        async getNewsDetail() {
+            const res = await getArticleGet({
+                id: this.id
             })
-            document.title = document.title
-            this.downloadList = res.list
-            this.total = res.total
+            if (!res.cid) {
+                this.$router.replace('/error/404')
+            }
+            document.title = res.title
+            this.newsDetail = res
+            this.newsDetail.content = marked(res.content)
         }
     }
 });
@@ -98,15 +97,15 @@ export default Vue.extend({
     line-height: 1.6;
     white-space: pre-wrap;
     padding: 3rem 0;
-    &::v-deep p {
-        text-indent: 2em;
-        margin-bottom: 1rem;
-        > img {
-            max-width: 100%;
-            display: block;
-            margin: 0 auto;
-        }
+    // &::v-deep p {
+    //     text-indent: 2em;
+    //     margin-bottom: 1rem;
+    &::v-deep img {
+        max-width: 100%;
+        // display: block;
+        // margin: 0 auto;
     }
+    
     @media (max-width: $smallScreen) {
         padding: 2rem 0;
     }

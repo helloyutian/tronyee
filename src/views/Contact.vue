@@ -6,7 +6,7 @@
     <div class="container">
       <h1 class="page-tit">联系方式 CONTACT US</h1>
       <div class="main">
-        <p><img src="/assets/img/logo.png" alt="logo"></p>
+        <p><img src="@/assets/img/logo2.jpg" alt="logo"></p>
         <p>&nbsp;</p>
         <p>电　话：{{ companyData.phone }}</p>
         <p>&nbsp;</p>

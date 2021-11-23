@@ -120,7 +120,7 @@ export default Vue.extend({
     white-space: pre-wrap;
     padding: 3rem 0;
     &::v-deep p {
-        text-indent: 2em;
+        // text-indent: 2em;
         margin-bottom: 1rem;
         > img {
             max-width: 100%;

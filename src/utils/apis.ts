@@ -12,9 +12,21 @@ export const getArticleInfo = (data: any) => axiosRequest({
     method: 'POST',
     data
 });
+// 文章详情
+export const getArticleGet = (data: any) => axiosRequest({
+    url: '/open/article/get',
+    method: 'POST',
+    data
+});
 // 品牌信息列表
 export const getBrandInfo = (data: any) => axiosRequest({
     url: '/open/brand/info',
+    method: 'POST',
+    data
+});
+// 品牌信息列表
+export const getBrandGet = (data: any) => axiosRequest({
+    url: '/open/brand/get',
     method: 'POST',
     data
 });
@@ -33,6 +45,12 @@ export const getOssByType = (data: any) => axiosRequest({
 // 货品信息列表
 export const getProductInfo = (data: any) => axiosRequest({
     url: '/open/product/info',
+    method: 'POST',
+    data
+});
+// 货品详情
+export const getProductGet = (data: any) => axiosRequest({
+    url: '/open/product/get',
     method: 'POST',
     data
 });
