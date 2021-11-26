@@ -25,7 +25,8 @@
                     <p>电话：{{ companyData.phone }}</p>
                     <p>邮箱：{{ companyData.email }}</p>
                     <p class="mb-10">地址：{{ companyData.address }}</p>
-                    <p>©2021-2022 {{ companyData.name }}版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备16056078号-2</a>  <a href="/map">网站地图</a></p>
+                    <p>©2021-2022 {{ companyData.name }}版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备2021161022号-1</a></p>
+                    <!-- <a href="/map">网站地图</a> -->
                 </div>
             </div>
         </div>
