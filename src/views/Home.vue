@@ -2,7 +2,10 @@
   <div class="wrap">
     <div class="session slide">
         <swiper class="slide-banner swiper-no-swiping" :options="bannerOption">
-            <swiper-slide v-for="item in bannerList" :key="item.id"><img class="img-full" :src="item.url" alt="" /></swiper-slide>
+            <swiper-slide v-for="item in bannerList" :key="item.id" class="banner-item">
+                <div class="pic"><img class="img-cover swiper-lazy" :data-src="item.url" alt="" /></div>
+                <div class="swiper-lazy-preloader"></div>
+            </swiper-slide>
             <div class="swiper-pagination banner-pagination" slot="pagination"></div>
             <div class="swiper-button-prev swiper-button-white banner-prev" slot="button-prev"></div>
             <div class="swiper-button-next swiper-button-white banner-next" slot="button-next"></div>
@@ -160,16 +163,20 @@ import { getArticleInfo, getOssByType } from '@/utils/apis';
 @Component({})
 export default class Home extends Vue {
     private bannerOption = {
-        autoplay: 5000,
+        // autoplay: 5000,
+        initialSlide: 1,
+        slidesPerView: 1,
         pagination: '.banner-pagination',
         paginationClickable: true,
         prevButton: '.banner-prev',
         nextButton: '.banner-next',
         observeParents: true,
         effect: 'fade',
-        fade: true,
+        // preloadImages: false,
+        // fade: false,
         autoplayDisableOnInteraction: false,
-        loop: true
+        lazyLoading: true,
+        lazyLoadingInPrevNext : true
     };
     private newsOption = {
         autoplay: 4000,
@@ -268,7 +275,26 @@ export default class Home extends Vue {
     width: 100%;
     .slide-banner {
         // height: 620px;
-        max-height: 620px;
+        .banner-item {
+            padding-top: 26%;
+            position: relative;
+            background-color: #eee;
+            .pic {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 2;
+            }
+            .img-cover {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
     }
     .banner-prev {
         left: 20px;

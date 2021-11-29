@@ -1,11 +1,18 @@
 <template>
     <div class="float-warp">
         <ul>
-            <li class="qq">
+            <li class="qq" @mouseenter="isShowQQ=true" @mouseleave="isShowQQ=false">
                 <!-- // qq -->
-                <a :href="`tencent://message/?Site=tianshigame.com&uin=${ companyData.qq }&Menu=yes`">
-                    <span class="iconfont icon-qq"></span>
-                </a>
+                <span class="iconfont icon-qq"></span>
+                <transition name="left-fade">
+                    <div v-if="isShowQQ" class="fade-box qqGroups">
+                        <ul>
+                            <li><a :href="`tencent://message/?Site=tianshigame.com&uin=${ companyData.qq }&Menu=yes`">QQ交谈</a></li>
+                            <li><a :href="`tencent://message/?Site=tianshigame.com&uin=${ companyData.qq }&Menu=yes`">QQ交谈</a></li>
+                            <li><a :href="`tencent://message/?Site=tianshigame.com&uin=${ companyData.qq }&Menu=yes`">售后服务</a></li>
+                        </ul>
+                    </div>
+                </transition>
             </li>
             <li class="tel">
                 <!-- // tel -->
@@ -18,7 +25,7 @@
                 <!-- // weixin -->
                 <span class="iconfont icon-weixin"></span>
                 <transition name="left-fade">
-                    <div v-if="isShowCode" class="qrcode">
+                    <div v-if="isShowCode" class="fade-box qrcode">
                         <img class="img-full" :src="companyData.wechatUrl" alt="微信二维码">
                         <p>关注官方微信</p>
                     </div>
@@ -40,6 +47,7 @@ export default Vue.extend({
     data() {
         return {
             isShowCode: false,
+            isShowQQ: false,
             step: 0,
         }
     },
@@ -117,22 +125,17 @@ export default Vue.extend({
                 }
                 
             }
-            .qrcode {
-                width: 100px;
-                // height: 100px;
+            .fade-box {
+                width: 150px;
                 background-color: #fff;
                 padding: 10px;
                 position: absolute;
-                top: -44px;
-                right: 55px;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 53px;
                 box-shadow: 0 5px 10px rgba($color: #000000, $alpha: .2);
-                > p {
-                    color: #666;
-                    font-size: 12px;
-                    line-height: 16px;
-                    padding-top: 5px;
-                    text-align: center;
-                }
+                border-radius: 6px;
+                border: 1px solid $borderColor;
                 &::after {
                     content: '\20';
                     width: 10px;
@@ -143,6 +146,31 @@ export default Vue.extend({
                     bottom: 50%;
                     right: -5px;
                     margin-bottom: -5px;
+                }
+            }
+            .qqGroups {
+                > ul {
+                    > li {
+                        padding: 6px 8px;
+                        > a {
+                            display: block;
+                            border: 1px solid $blueColor;
+                            border-radius: 16px;
+                            height: 32px;
+                            line-height: 32px;
+                            font-size: 16px;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+            .qrcode {
+                > p {
+                    color: #666;
+                    font-size: 12px;
+                    line-height: 16px;
+                    padding-top: 5px;
+                    text-align: center;
                 }
             }
             &.top {

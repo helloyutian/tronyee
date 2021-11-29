@@ -8,7 +8,7 @@ interface RequestOptionsType {
     headers?: any;
 }
 
-axios.defaults.baseURL = 'http://112.74.94.224:8080/'
+axios.defaults.baseURL = 'http://admin.tcx-forever.com/'
 
 
 // axios.defaults.transformRequest = [function(data, headers){
