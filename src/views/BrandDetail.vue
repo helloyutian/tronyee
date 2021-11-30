@@ -7,7 +7,7 @@
             <div class="local"><span class="iconfont icon-home"></span> 您的位置：<router-link to="/">首页</router-link> → <router-link to="/brand">品牌专区</router-link></div>
             <!-- 标题 -->
             <h1 class="article-tit">{{ brandData.name }}</h1>
-            <p class="article-time"><span><i class="iconfont icon-time"></i> {{ $dateFormate(brandData.modifyTime, 'YYYY-MM-DD') }}</span><span><i class="iconfont icon-View"></i> ({{ 60 + brandData.id * 3 }})次浏览</span></p>
+            <p class="article-time"><span><i class="iconfont icon-time"></i> {{ $dateFormate(brandData.modifyTime, 2, 'YYYY-MM-DD') }}</span><span><i class="iconfont icon-View"></i> ({{ 60 + brandData.id * 3 }})次浏览</span></p>
             <div class="article-main">
                 <p><img :src="brandData.img" alt=""></p>
                 <p>{{ brandData.description }}</p>

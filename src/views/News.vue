@@ -23,7 +23,7 @@
                         <div class="pic"><router-link :to="`/news/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link></div>
                         <div class="txt">
                             <h3><router-link :to="`/news/${ item.cid }`">{{ item.title }}</router-link></h3>
-                            <p class="date"><span class="iconfont icon-time"></span> {{ item.modified }}</p>
+                            <p class="date"><span class="iconfont icon-time"></span> {{  $dateFormate(item.modified, 3, 'YYYY-MM-DD') }}</p>
                             <p class="desc">{{ item.slug }}</p>
                             <router-link class="link" :to="`/news/${ item.cid }`">[查看详情+]</router-link>
                         </div>

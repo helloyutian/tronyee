@@ -192,6 +192,8 @@ export default Vue.extend({
         display: table;
         border: 1px solid $borderColor2;
         height: 200px;
+        position: relative;
+        width: 100%;
       }
       .honor-img {
         display: table-cell;
@@ -201,6 +203,7 @@ export default Vue.extend({
         width: 100%;
         > img {
           max-width: 100%;
+          max-height: 200px;
         }
       }
       > p {

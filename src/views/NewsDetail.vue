@@ -7,7 +7,7 @@
             <div class="local"><span class="iconfont icon-home"></span> 您的位置：<router-link to="/">首页</router-link> → <router-link to="/news">行业动态</router-link></div>
             <!-- 标题 -->
             <h1 class="article-tit">{{ newsDetail.title }}</h1>
-            <p class="article-time"><span><i class="iconfont icon-time"></i> {{ $dateFormate(newsDetail.modified, 'YYYY-MM-DD') }}</span><span><i class="iconfont icon-View"></i> ({{ newsDetail.hits }})次浏览</span></p>
+            <p class="article-time"><span><i class="iconfont icon-time"></i> {{ $dateFormate(newsDetail.modified, 3, 'YYYY-MM-DD') }}</span><span><i class="iconfont icon-View"></i> ({{ newsDetail.hits }})次浏览</span></p>
             <div class="article-main editormd-preview-container" v-html="newsDetail.content"></div>
             <div class="detail-pager clearfix">
                 <!-- <div class="fl">

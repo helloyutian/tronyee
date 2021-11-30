@@ -10,7 +10,7 @@
                         <span class="icon iconfont icon-xiazai"></span>
                         <h4>{{ item.name }}</h4>
                         <p class="count">下载次数：{{ (item.id * 3) % 11 * 6 + 30 + (clickCount['c' + item.id] || 0) }}</p>
-                        <p class="date">更新时间：{{ $dateFormate(item.modifyTime, 'YYYY-MM-DD') }}</p>
+                        <p class="date">更新时间：{{ $dateFormate(item.modifyTime, 2, 'YYYY-MM-DD') }}</p>
                     </a>
                 </li>
             </ul>

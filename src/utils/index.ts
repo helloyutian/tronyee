@@ -4,12 +4,13 @@ interface RouteChildrenItemType {
     type: string;
 }
 // 日期格式化
-export const dateFormate = (date: number|string, format = 'YYYY-MM-DD hh:mm:ss') => {
+export const dateFormate = (date: any, type: number, format = 'YYYY-MM-DD hh:mm:ss') => {
     // format  Y:年 M:月 D:日 h:时 m:分 s: 秒  例如：YYYY-MM-DD hh:mm:ss
+    // type: 1-日期字符串，2-时间戳（毫秒），3-时间戳（秒）
     // if (typeof format !== 'string') {
     //     throw new Error('DateFormate 的第二个参数必须是字符串')
     // }
-    const datetime = typeof date === 'string' ? date : date * 1000
+    const datetime = type === 3 ? date * 1000 : type === 2 ? date * 1 : date
     const time = new Date(datetime);
     const timeObj: ObjectType = {
         y: String(time.getFullYear()),

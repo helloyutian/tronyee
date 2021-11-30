@@ -6,10 +6,11 @@
                 <span class="iconfont icon-qq"></span>
                 <transition name="left-fade">
                     <div v-if="isShowQQ" class="fade-box qqGroups">
+                        <h3 class="fade-box-tit">在线咨询</h3>
                         <ul>
-                            <li><a :href="`tencent://message/?Site=tianshigame.com&uin=${ companyData.qq }&Menu=yes`">QQ交谈</a></li>
-                            <li><a :href="`tencent://message/?Site=tianshigame.com&uin=${ companyData.qq }&Menu=yes`">QQ交谈</a></li>
-                            <li><a :href="`tencent://message/?Site=tianshigame.com&uin=${ companyData.qq }&Menu=yes`">售后服务</a></li>
+                            <li v-for="item in companyData.qqContacts" :key="item.id">
+                                <a :href="`tencent://message/?Site=tianshigame.com&uin=${ item.content }&Menu=yes`" title="点击咨询">{{ item.name }}</a>
+                            </li>
                         </ul>
                     </div>
                 </transition>
@@ -126,16 +127,24 @@ export default Vue.extend({
                 
             }
             .fade-box {
-                width: 150px;
+                width: 180px;
                 background-color: #fff;
-                padding: 10px;
+                box-sizing: border-box;
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
                 right: 53px;
                 box-shadow: 0 5px 10px rgba($color: #000000, $alpha: .2);
-                border-radius: 6px;
                 border: 1px solid $borderColor;
+                .fade-box-tit {
+                    width: 100%;
+                    background-color: $blueColor;
+                    height: 42px;
+                    line-height: 42px;
+                    color: #fff;
+                    font-size: 16px;
+                    font-weight: 400;
+                }
                 &::after {
                     content: '\20';
                     width: 10px;
@@ -150,8 +159,9 @@ export default Vue.extend({
             }
             .qqGroups {
                 > ul {
+                    padding: 10px;
                     > li {
-                        padding: 6px 8px;
+                        padding: 4px 6px;
                         > a {
                             display: block;
                             border: 1px solid $blueColor;
@@ -160,15 +170,22 @@ export default Vue.extend({
                             line-height: 32px;
                             font-size: 16px;
                             text-align: center;
+                            transition: all ease .2s;
+                            &:hover {
+                                background-color: $blueColor;
+                                color: #fff;
+                                transition: all ease .2s;
+                            }
                         }
                     }
                 }
             }
             .qrcode {
+                padding: 10px;
                 > p {
                     color: #666;
-                    font-size: 12px;
-                    line-height: 16px;
+                    font-size: 14px;
+                    line-height: 18px;
                     padding-top: 5px;
                     text-align: center;
                 }

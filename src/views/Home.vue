@@ -108,10 +108,10 @@
                 </div> -->
                 <div class="con" @mouseenter.stop="stopAutoPlay('newsSwiper')" @mouseleave.stop="startAutoPlay('newsSwiper')">
                     <swiper ref="newsSwiper" class="exhibition-slide swiper-no-swiping" :options="newsOption">
-                        <swiper-slide v-for="item in dynamicLlist" :key="item.cid" class="slide-item">
+                        <swiper-slide v-for="item in dynamicLlist" :key="item.cid" class="slide-item img-scale">
                             <router-link :to="`/news/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link>
                             <div class="txt">
-                                <span>{{ $dateFormate(item.modified, 'MM-DD') }}</span>
+                                <span>{{ $dateFormate(item.modified, 3, 'MM-DD') }}</span>
                                 <p><router-link :to="`/news/${ item.cid }`">{{ item.title }}</router-link></p>
                             </div>
                         </swiper-slide>
@@ -125,17 +125,17 @@
                 <div class="con">
                     <ul>
                         <template v-for="(item, idx) in wikiList">
-                            <li v-if="idx === 0" :key="item.cid" class="first-item clearfix">
-                                <div class="pic fl"><router-link :to="`/news/${ item.cid }`"><img class="img-full" :src="item.titlePic" alt=""></router-link></div>
+                            <li v-if="idx === 0" :key="item.cid" class="first-item clearfix img-scale">
+                                <div class="pic fl"><router-link :to="`/news/${ item.cid }`"><img class="img-cover" :src="item.titlePic" alt=""></router-link></div>
                                 <div class="txt">
                                     <h3><router-link :to="`/news/${ item.cid }`">{{ item.title }}</router-link></h3>
-                                    <p class="date">{{ $dateFormate(item.modified, 'YYYY-MM-DD') }}</p>
+                                    <p class="date">{{ $dateFormate(item.modified, 3, 'YYYY-MM-DD') }}</p>
                                     <p class="intro">{{ item.slug }}</p>
                                 </div>
                             </li>
                             <li v-else :key="item.cid" class="item">
-                                <router-link :to="`/news/${ item.type }/${ item.cid }`">
-                                    <span class="date" v-html="$dateFormate(item.modified, '<i>DD</i>/MM')"></span>
+                                <router-link :to="`/news/${ item.cid }`">
+                                    <span class="date" v-html="$dateFormate(item.modified, 3, '<i>DD</i>/MM')"></span>
                                     <p>{{ item.title }}</p>
                                 </router-link>
                             </li>
@@ -163,7 +163,7 @@ import { getArticleInfo, getOssByType } from '@/utils/apis';
 @Component({})
 export default class Home extends Vue {
     private bannerOption = {
-        // autoplay: 5000,
+        autoplay: 5000,
         initialSlide: 1,
         slidesPerView: 1,
         pagination: '.banner-pagination',
@@ -249,7 +249,7 @@ export default class Home extends Vue {
         })
         // console.log(res)
         this.wikiList = res.list
-        this.dynamicLlist = this.wikiList.splice(0, 2)
+        this.dynamicLlist = this.wikiList.splice(0, 3)
     }
     private getAboutContent() {
         const txt = this.companyData.introduce || ''
@@ -287,12 +287,6 @@ export default class Home extends Vue {
                 bottom: 0;
                 left: 0;
                 z-index: 2;
-            }
-            .img-cover {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
             }
         }
     }
@@ -618,6 +612,7 @@ export default class Home extends Vue {
             background-color: #eee;
             .exhibition-slide {
                 height: 100%;
+                border: 1px solid $borderColor2;
                 .slide-item {
                     position: relative;
                     > img {
@@ -724,6 +719,8 @@ export default class Home extends Vue {
                             height: 190px;
                             background-color: #eee;
                             margin-right: 15px;
+                            border: 1px solid $borderColor2;
+                            overflow: hidden;
                         }
                         .txt {
                             
