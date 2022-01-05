@@ -21,12 +21,17 @@ interface RequestParamsType {
   headers?: object;
 }
 
+interface RouteChildrensItem {
+  href: string;
+  name: string;
+  type: string;
+  en?: string;
+  img?: string;
+  hideIndex?: boolean;
+}
+
 interface RouteItemType {
   href: string;
   name: string;
-  childrens?: Array<{
-      href: string;
-      name: string;
-      type: string;
-  }>
+  childrens?: Array<RouteChildrensItem>
 }

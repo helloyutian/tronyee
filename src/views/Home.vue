@@ -18,25 +18,25 @@
                     <p>PRODUCTS AND SERVICES</p>
                     <h2>产品与服务</h2>
                 </div>
-                <p class="intro">深圳市泰成兴电子科技有限公司一直专注于国内外知名品牌MLCC电容的行销以及物流供应链，主要品牌有：三星(SAMSUNG)、村田（MURATA)、国巨（YAGEO)、华科（WALSIN）、三环（CCTC）等。目前公司主要以国内贸易为主，现货形式销售，常备大量现货，拥有完整的型号库存。</p>
+                <p class="intro">深圳市泰成兴电子科技有限公司一直专注于国内外知名品牌的电阻、电容、电感、MOS管、车载芯片的行销以及物流供应链，主要品牌有：三星(SAMSUNG)、村田（MURATA)、国巨（YAGEO)、华科（WALSIN）、天二（EVER OHMS）、厚声（UNI-ROYAL）、风华(FENGHUA)、顺络（Sunlord）、晶导（JD）、长晶（JCET）、TDK、NXP、ON、MAXIM、INFINEON等。目前公司主要以国内贸易为主，现货形式销售，常备大量现货，拥有完整的型号库存。</p>
             </div>
         </div>
         <div ref="productElem" class="container">
             <div class="product-list">
                 <ul class="clearfix">
-                    <li>
-                        <div class="product-item animated" :class="{fadeInDown: isShowProduct}" style="animation-delay: .2s">
+                    <li v-for="(item, idx) in productTypeList" :key="item.href" v-show="!item.hideIndex">
+                        <div class="product-item animated" :class="{fadeInDown: isShowProduct}" :style="`animation-delay: ${ (2 + idx * 5) / 10 }s`">
                             <div class="pic">
-                                <img class="img-full" src="@/assets/img/a.jpg" alt="产品">
+                                <img class="img-full" :src="item.img" :alt="item.name">
                             </div>
                             <div class="mark"></div>
-                            <a class="txt" href="/product/sx">
-                                <h3>三星贴片电容</h3>
-                                <p>Inductive magnetic beads</p>
+                            <a class="txt" :href="item.href">
+                                <h3>{{ item.name }}</h3>
+                                <p>{{ item.en }}</p>
                             </a>
                         </div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="product-item animated" :class="{fadeInDown: isShowProduct}" style="animation-delay: .7s">
                             <div class="pic">
                                 <img class="img-full" src="@/assets/img/b.jpg" alt="产品">
@@ -59,7 +59,7 @@
                                 <p>Capacitor category</p>
                             </a>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -159,6 +159,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import '@/assets/scss/animate.css';
 import { getArticleInfo, getOssByType } from '@/utils/apis';
+import { getProductTypeList } from '@/utils'
 
 @Component({})
 export default class Home extends Vue {
@@ -195,6 +196,7 @@ export default class Home extends Vue {
     private isShowProduct = false
     private isShowAbout = false
     private isShowNews = false
+    private productTypeList = getProductTypeList()
 
     get companyData() {
         return this.$store.state.companyData
@@ -339,9 +341,18 @@ export default class Home extends Vue {
             float: left;
             .product-item {
                 position: relative;
-                margin: 0 5px;
+                margin: 10px;
+                height: 210px;
                 .pic {
                     position: relative;
+                    height: 100%;
+                    width: 100%;
+                    > img {
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
                     &::after {
                         content: '\20';
                         position: absolute;
@@ -422,6 +433,20 @@ export default class Home extends Vue {
     }
     @media (max-width: $middleScreen) {
         margin: 2rem 0 2rem;
+        > ul {
+            > li {
+                .product-item {
+                    height: 180px;
+                }
+            }
+        }
+    }
+    @media (max-width: $smallScreen) {
+        > ul {
+            > li {
+                width: 50%;
+            }
+        }
     }
 }
 .about {

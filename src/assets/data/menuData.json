@@ -14,9 +14,56 @@
     "name": "产品中心",
     "href": "/product",
     "childrens": [
-      { "name": "三星贴片电容", "href": "/product/sx", "type": "sx" },
-      { "name": "村田贴片电容", "href": "/product/ct", "type": "ct" },
-      { "name": "国巨贴片电容", "href": "/product/gj", "type": "gj" }
+      { 
+        "name": "贴片电阻",
+        "en": "CHIP RESISTOR",
+        "href": "/product/1",
+        "img": "/img/tpdz.png",
+        "type": "1"
+      },
+      { 
+        "name": "贴片电容",
+        "en": "CHIP CAPACITOR",
+        "href": "/product/2",
+        "img": "/img/tpdr.png",
+        "type": "2"
+      },
+      { 
+        "name": "贴片电感",
+        "en": "CHIP INDUCTOR",
+        "href": "/product/3",
+        "img": "/img/tpdg.png",
+        "type": "3"
+      },
+      { 
+        "name": "MCU单片机",
+        "en": "CHIP MICROCOMPUTER",
+        "href": "/product/4",
+        "img": "/img/mcu.png",
+        "type": "4"
+      },
+      { 
+        "name": "MOSFET管",
+        "en": "MOSFET",
+        "href": "/product/5",
+        "img": "/img/mosfet.png",
+        "type": "5"
+      },
+      { 
+        "name": "芯片",
+        "en": "CHIP",
+        "href": "/product/6",
+        "img": "/img/chip.png",
+        "type": "6"
+      },
+      { 
+        "name": "二三极管",
+        "en": "DIODE TRIODE",
+        "href": "/product/7",
+        "img": "/img/triode.png",
+        "type": "7",
+        "hideIndex": true
+      }
     ]
   },
   {

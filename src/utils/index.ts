@@ -1,8 +1,11 @@
+import menuData from '@/assets/data/menuData.json';
+
 interface RouteChildrenItemType {
     name: string;
     href: string;
     type: string;
 }
+
 // 日期格式化
 export const dateFormate = (date: any, type: number, format = 'YYYY-MM-DD hh:mm:ss') => {
     // format  Y:年 M:月 D:日 h:时 m:分 s: 秒  例如：YYYY-MM-DD hh:mm:ss
@@ -64,4 +67,13 @@ export const getRouteItemName = (type: string, routeList: RouteChildrenItemType[
     }
     const arr = routeList.filter((item) => item.type === type)
     return arr[0] ? arr[0].name : ''
+}
+
+// 获取产品分类
+export const getProductTypeList = (): RouteChildrensItem[] => {
+    if (!menuData.length) {
+        return []
+    }
+    const proObj = menuData.filter((item: RouteItemType) => item.href === '/product')[0]
+    return proObj ? proObj.childrens : []
 }
