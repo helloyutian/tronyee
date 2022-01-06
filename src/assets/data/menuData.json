@@ -18,49 +18,49 @@
         "name": "贴片电阻",
         "en": "CHIP RESISTOR",
         "href": "/product/1",
-        "img": "/img/tpdz.png",
+        "img": "/img/tpdz.jpg",
         "type": "1"
       },
       { 
         "name": "贴片电容",
         "en": "CHIP CAPACITOR",
         "href": "/product/2",
-        "img": "/img/tpdr.png",
+        "img": "/img/tpdr.jpg",
         "type": "2"
       },
       { 
         "name": "贴片电感",
         "en": "CHIP INDUCTOR",
         "href": "/product/3",
-        "img": "/img/tpdg.png",
+        "img": "/img/tpdg.jpg",
         "type": "3"
       },
       { 
         "name": "MCU单片机",
         "en": "CHIP MICROCOMPUTER",
         "href": "/product/4",
-        "img": "/img/mcu.png",
+        "img": "/img/mcu.jpg",
         "type": "4"
       },
       { 
         "name": "MOSFET管",
         "en": "MOSFET",
         "href": "/product/5",
-        "img": "/img/mosfet.png",
+        "img": "/img/mosfet.jpg",
         "type": "5"
       },
       { 
         "name": "芯片",
         "en": "CHIP",
         "href": "/product/6",
-        "img": "/img/chip.png",
+        "img": "/img/chip.jpg",
         "type": "6"
       },
       { 
         "name": "二三极管",
         "en": "DIODE TRIODE",
         "href": "/product/7",
-        "img": "/img/triode.png",
+        "img": "/img/triode.jpg",
         "type": "7",
         "hideIndex": true
       }

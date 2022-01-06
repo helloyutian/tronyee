@@ -342,17 +342,17 @@ export default class Home extends Vue {
             .product-item {
                 position: relative;
                 margin: 10px;
-                height: 210px;
+                // height: 210px;
                 .pic {
                     position: relative;
-                    height: 100%;
+                    // height: 100%;
                     width: 100%;
-                    > img {
-                        height: 100%;
-                        width: 100%;
-                        object-fit: cover;
-                        object-position: center;
-                    }
+                    // > img {
+                    //     height: 100%;
+                    //     width: 100%;
+                    //     object-fit: cover;
+                    //     object-position: center;
+                    // }
                     &::after {
                         content: '\20';
                         position: absolute;
@@ -433,13 +433,13 @@ export default class Home extends Vue {
     }
     @media (max-width: $middleScreen) {
         margin: 2rem 0 2rem;
-        > ul {
-            > li {
-                .product-item {
-                    height: 180px;
-                }
-            }
-        }
+        // > ul {
+        //     > li {
+        //         .product-item {
+        //             height: 180px;
+        //         }
+        //     }
+        // }
     }
     @media (max-width: $smallScreen) {
         > ul {
